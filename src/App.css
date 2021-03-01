@@ -25,7 +25,12 @@ hr {
   color: #333;
   text-align: center;
 }
-
+.btn-primary {
+  background-color: #45a049;
+}
+.btn-primary:hover{
+  background-color: #307433;
+}
 
 
 /* CUSTOMIZE THE CAROUSEL
@@ -113,9 +118,6 @@ hr {
 .card:hover{
   transform: scale(1.1);
 }
-.card-lg {
-  border-radius: 5%;
-}
 
 
 .row {
@@ -153,7 +155,7 @@ hr {
 -------------------------------------------------- */
 
 .products-container{
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 
@@ -256,7 +258,7 @@ hr {
   /* ease-out */
   width: 660px;
   height: 100%;
-  background-color: #3f96cd;
+  background-color: #1e9e48;
   position: absolute;
   left: -659px;
 }
@@ -378,7 +380,7 @@ hr {
   display: block;
   position: absolute;
   top: 50%;
-  left: 110%;
+  left: 120%;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
@@ -391,7 +393,61 @@ hr {
   letter-spacing: 0.045em;
   text-transform: uppercase;
   white-space: nowrap;
+  padding-right: 24%;
+  padding-left: 24%;
 }
+.counter {
+  display: inline;
+  background: rgb(252, 252, 252);
+  border-radius: 50%;
+  color: rgb(0, 0, 0);
+  padding: 8px 12px;
+  transition: all .2s ease-in-out;
+  cursor: pointer;                              
+}
+.add-to-cart span {
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none;
+  -ms-user-select: none; 
+  user-select: none; 
+}
+
+.counter:hover{
+  transform: scale(1.2);
+}
+
+
+
+.totals {
+  padding-top: 5%;
+  align-items: center;
+  text-align: center;
+}
+.totals-inner {
+  margin: 0 auto;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: white;
+  border-radius: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.totals-inner a {
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #2e312e;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  padding-left: 1%;
+  padding-right: 1%;
+  border-radius: 500px;
+  font-size: medium;
+}
+.totals-inner a:hover{
+  background-color: #202020;
+}
+
 
 /* PRODUCT PAGE
 -------------------------------------------------- */
@@ -518,4 +574,88 @@ span.price {
   .featurette-heading {
     margin-top: 120px;
   }
+}
+
+#sq-cvv {
+  width: 60px;
+}
+
+#sq-expiration-date {
+  width: 75px;
+}
+
+
+#sq-postal-code {
+  width: 75px;
+  text-align: center;
+}
+
+#sq-ccbox {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1;
+  position: relative;
+  min-width: 315px;
+  border-radius: 10px;
+  transition: all 400ms linear;
+  width: 365px;
+  height: auto;
+  background-color: rgb(60, 121, 253);
+  padding: 10px;
+  margin: 0 auto;
+  color: #CCC;
+  font-weight: 600;
+}
+
+
+#sq-card-number {
+  width: 200px;
+}
+
+#cc-field-wrapper {
+  padding-top: 50px;
+  margin: 0;
+  display: inline-flex;
+}
+
+button.button-credit-card {
+  display: block;
+  line-height: 1.25em;
+  vertical-align: middle;
+  height: 45px;
+  width: 385px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 5px auto;
+  font-size: 22px;
+  font-weight: 600;
+  background-color: #000;
+  color: #FFF;
+}
+
+button.wallet-button {
+  display: block;
+  margin: 5px auto;
+  border-radius: 10px;
+  height: 45px;
+  width: 300px;
+  overflow: hidden;
+  background-clip: border-box;
+  background-position: center;
+}
+
+#form-container {
+  padding-top: 10%;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #000;
+}
+
+.sq-input--focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.sq-input--error {
+  box-shadow: inset 0px 0px 0px 3px rgba(255,0,0,0.5);
 }
