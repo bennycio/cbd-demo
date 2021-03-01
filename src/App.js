@@ -1,22 +1,41 @@
 
 
+
+import React, {useState} from 'react';
 import './App.css';
-import './App.scss'
-function App() {
-  return (
-     <div className="body">
-        <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content />
-        <meta name="author" content />
-        <title>CBD Incorporated</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossOrigin="anonymous" />
-        <nav className="menu-bar">
-            <li href="/">HOME</li>
-            <li href="/store">STORE</li>
-            <li href="/info">INFO</li>
-        </nav>
+import './App.scss';
+import { NavLink, BrowserRouter, Switch, Route } from "react-router-dom";
+
+class App extends React.Component{
+
+
+  render() {
+    return(
+      <BrowserRouter>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Index />
+          </Route>
+          <Route path="/store">
+            <Store />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+    )
+  }
+}
+
+
+
+class Index extends React.Component {
+
+
+  render() {
+    return (
+        <div className="body">
+             <Navbar />
         <div id="mainCarousel" className="carousel slide" data-ride="carousel">
           <ol className="carousel-indicators">
             <li data-target="#mainCarousel" data-slide-to="0" className="active" />
@@ -130,8 +149,144 @@ function App() {
           </footer>
         </div>
       </div>
-  );
+      );
+  }
 }
+
+class Store extends React.Component {
+
+  render(){
+      return (
+          <div className="body">
+              <Navbar />
+              <div className="container products-container">
+              <div className="container">
+              </div>
+              <hr />
+              <div className="row">
+                  <div className="col-lg-4">
+                  <div className="container page-wrapper">
+                      <div className="page-inner">
+                      <div className="row">
+                          <div className="el-wrapper">
+                          <div className="box-up">
+                              <img className="img" src="images/storecbd.png}" alt="" />
+                              <div className="img-info">
+                              <div className="info-inner">
+                                  <span className="p-type">Premium</span>
+                                  <span className="p-tag">I feel like royalty</span>
+                              </div>
+                              <div className="a-size">Streng <span className="size">100 mg per serving</span></div>
+                              </div>
+                          </div>
+                          <div className="box-down">
+                              <div className="h-bg">
+                              <div className="h-bg-inner" />
+                              </div>
+                              <a className="cart" href="store/1">
+                              <span className="price">$25</span>
+                              <span className="add-to-cart">
+                                  <span className="txt">Add to cart</span>
+                              </span>
+                              </a>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+                  <div className="col-lg-4">
+                  <div className="container page-wrapper">
+                      <div className="page-inner">
+                      <div className="row">
+                          <div className="el-wrapper">
+                          <div className="box-up">
+                              <img className="img" src="images/storecbd.png}" alt="" />
+                              <div className="img-info">
+                              <div className="info-inner">
+                                  <span className="p-type">Ultimate</span>
+                                  <span className="p-tag">I've never felt so chill</span>
+                              </div>
+                              <div className="a-size">Streng <span className="size">250 mg per serving</span></div>
+                              </div>
+                          </div>
+                          <div className="box-down">
+                              <div className="h-bg">
+                              <div className="h-bg-inner" />
+                              </div>
+                              <a className="cart" href="store/2}">
+                              <span className="price">$50</span>
+                              <span className="add-to-cart">
+                                  <span className="txt">Add to cart</span>
+                              </span>
+                              </a>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+                  <div className="col-lg-4">
+                  <div className="container page-wrapper">
+                      <div className="page-inner">
+                      <div className="row">
+                          <div className="el-wrapper">
+                          <div className="box-up">
+                              <img className="img" src="images/storecbd.png}" alt="" />
+                              <div className="img-info">
+                              <div className="info-inner">
+                                  <span className="p-type">Soul-Wrencher</span>
+                                  <span className="p-tag">I'm on the moon</span>
+                              </div>
+                              <div className="a-size">Streng <span className="size">500 mg per serving</span></div>
+                              </div>
+                          </div>
+                          <div className="box-down">
+                              <div className="h-bg">
+                              <div className="h-bg-inner" />
+                              </div>
+                              <a className="cart" href="store/3}">
+                              <span className="price">$100</span>
+                              <span className="add-to-cart">
+                                  <span className="txt">Add to cart</span>
+                              </span>
+                              </a>
+                          </div>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+              <hr />
+              <footer>
+                  <p className="pull-right"><a href="#">Back to top</a></p>
+                  <p>© 2021 CBD Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+              </footer>
+              </div>
+          </div>
+      );
+  }
+}
+
+const Navbar = () => {
+  const [isOpen, setOpen] = useState(false);
+  return (
+      <div className="menu-container">
+        <nav className="menu-bar">
+            <NavLink className="navbar-item" activeClassName="is-active" to="/" style={{ textDecoration: 'none' }}>
+              <li>Home</li>
+            </NavLink>
+            <NavLink className="navbar-item" activeClassName="is-active" to="/store" style={{ textDecoration: 'none' }}>
+            <li>Store</li>
+            </NavLink>
+            <NavLink className="navbar-item" activeClassName="is-active" to="/info" style={{ textDecoration: 'none' }}>
+            <li>Info</li>
+            </NavLink>
+        </nav>
+      </div>
+  );
+};
 
 
 
