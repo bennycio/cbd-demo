@@ -129,7 +129,8 @@ import {
       method: 'POST',
       headers: {
         'Authorization': "Bearer EAAAEGvpQJTk_kQgLHr9v7N4GMt53a2yg8ZWAvTvgTDOyDL2HQrGBiL0a73WGq9F",
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify(data)
     });
