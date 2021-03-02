@@ -5,10 +5,14 @@ import React, {useState, lazy, Suspense} from 'react';
 import './App.css';
 import './App.scss';
 import { NavLink, BrowserRouter, Switch, Route } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion"
 
-import Home from './Home'
-import Store from './Store'
-import PaymentPage from "./PaymentPage";
+// import Home from './Home'
+// import Store from './Store'
+// import PaymentPage from "./PaymentPage";
+const Home = lazy(()=>import('./Home'))
+const Store = lazy(()=>import('./Store'))
+const PaymentPage = lazy(()=>import('./PaymentPage'))
 
 
 class App extends React.Component{
@@ -28,23 +32,26 @@ class App extends React.Component{
 
   render() {
     return(
-      <BrowserRouter>
-      <Suspense fallback={Loading}/>
-      <div>
-      <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/store" cart={this.state.cart} handleChange={this.handleChange}>
-            <Store />
-          </Route>
-          <Route path="/checkout">
-            <PaymentPage cart={this.state.cart}/>
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+      <AnimatePresence>
+        <Suspense fallback={Loading}>
+        <BrowserRouter>
+        <div>
+        <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/store" cart={this.state.cart} handleChange={this.handleChange}>
+              <Store />
+            </Route>
+            <Route path="/checkout">
+              <PaymentPage cart={this.state.cart}/>
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+      </Suspense>
+    </AnimatePresence>
     )
   }
 }

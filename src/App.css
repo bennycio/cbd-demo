@@ -17,14 +17,6 @@
   overflow-x: hidden;
 }
 
-hr {
-  overflow: visible;
-  margin: 80px 0;
-  border: none;
-  border-top: medium double #333;
-  color: #333;
-  text-align: center;
-}
 .btn-primary {
   background-color: #45a049;
 }
@@ -32,7 +24,89 @@ hr {
   background-color: #307433;
 }
 
+.header {
+  height: 100vh;
+  background-image: 
+  linear-gradient(to right bottom, 
+   rgba(109, 209, 69, 0.8),
+   rgba(30, 97, 34, 0.8));
+  
+background-size: cover;
+  background-position: top;
+  position: relative;
 
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+
+.header img {
+  width: 20%;
+  height: auto;
+}
+.brand-box {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+
+.brand { font-size: 20px; }
+
+.text-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+
+  backface-visibility: hidden;
+  margin-bottom: 30px;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 5px;
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 7.4px;
+}
+
+.header .btn:link,
+.header .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+}
+
+.header .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header .btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header .btn-white {
+  background-color: #fff;
+  color: #777;
+font-size: 14px;
+}
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -659,3 +733,4 @@ input::placeholder {
 .sq-input--error {
   box-shadow: inset 0px 0px 0px 3px rgba(255,0,0,0.5);
 }
+
