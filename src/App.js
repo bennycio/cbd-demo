@@ -2,17 +2,17 @@
 
 
 import React, {useState, lazy, Suspense} from 'react';
-import './App.css';
-import './App.scss';
+import './css/App.css';
+import './css/App.scss';
 import { NavLink, BrowserRouter, Switch, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion"
 
 // import Home from './Home'
 // import Store from './Store'
 // import PaymentPage from "./PaymentPage";
-const Home = lazy(()=>import('./Home'))
-const Store = lazy(()=>import('./Store'))
-const PaymentPage = lazy(()=>import('./PaymentPage'))
+const Home = lazy(()=>import('./Components/Home'))
+const Store = lazy(()=>import('./Components/Store'))
+const PaymentPage = lazy(()=>import('./Components/PaymentPage'))
 
 
 class App extends React.Component{
