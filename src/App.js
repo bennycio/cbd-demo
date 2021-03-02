@@ -2,8 +2,8 @@
 
 
 import React, {useState, lazy, Suspense} from 'react';
-import './css/App.css';
-import './css/App.scss';
+import './App.css';
+import './App.scss';
 import { NavLink, BrowserRouter, Switch, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion"
 
