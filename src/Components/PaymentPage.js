@@ -32,8 +32,7 @@ import {
       setErrorMessages([]);
   
       alert('nonce created: ' + nonce + ', buyerVerificationToken: ' + buyerVerificationToken);
-      var response = makePayment(nonce, buyerVerificationToken)
-      console.log(response)
+      // MAKE PAYMENT
     }
   
     function createPaymentRequest() {
@@ -122,36 +121,6 @@ import {
       </SquarePaymentForm>
     );
   };
-
-  function makePayment(nonce, token) {
-    const data = createPayload(nonce,token)
-    const response = fetch("https://connect.squareupsandbox.com/v2/payments", {
-      method: 'POST',
-      headers: {
-        'Authorization': "Bearer EAAAEGvpQJTk_kQgLHr9v7N4GMt53a2yg8ZWAvTvgTDOyDL2HQrGBiL0a73WGq9F",
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(data)
-    });
-    return response.json(); 
-  }
-  
-
-    function createPayload(nonce, token){
-      const payload = {
-      "source_id": nonce,
-      "verification_token": token,
-      "autocomplete": true,
-      "location_id": LOCATION_ID,
-      "amount_money": {
-        "amount": 100,
-        "currency": "USD"
-      },
-      "idempotency_key": uuidv4()
-    }
-    return payload
-  }
   
   export default PaymentPage;
   
