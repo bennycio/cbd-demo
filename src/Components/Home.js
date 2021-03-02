@@ -25,7 +25,7 @@ class Home extends React.Component {
             <div className="row">
               <div className="col-lg-4">
                 <div className="shadowed card">
-                  <img className="img-circle" src="images/cbd.jpg" alt="Generic placeholder image" width={140} height={140} />
+                  <img className="img-circle" src="images/product1.jpg" alt="Generic placeholder image" width={140} height={140} />
                   <h2>Premium</h2>
                   <p>A powerful oil that will alleviate all pains and anxiety, leaving you feeling at peace with the universe.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
@@ -33,7 +33,7 @@ class Home extends React.Component {
               </div>
               <div className="col-lg-4">
                 <div className="shadowed card">
-                  <img className="img-circle mx-3" src="/images/cbd.jpg" alt="Generic placeholder image" width={140} height={140} />
+                  <img className="img-circle" src="/images/product2.jpg" alt="Generic placeholder image" width={140} height={140} />
                   <h2>Ultimate</h2>
                   <p>Our mid-tier oil, providing an experience that will pull you away from reality but not so far where you can no longer reach over to grab the oil bottle for a second go.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
@@ -41,7 +41,7 @@ class Home extends React.Component {
               </div>
               <div className="col-lg-4">
                 <div className="shadowed card">
-                  <img className="img-circle" src="images/cbd.jpg" alt="Generic placeholder image" width={140} height={140} />
+                  <img className="img-circle " src="images/product3.jpg" alt="Generic placeholder image" width={140} height={140} />
                   <h2>Soul-Wrencher</h2>
                   <p>This product will take you to a new dimension and is our most refined option.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
@@ -55,7 +55,7 @@ class Home extends React.Component {
               </blockquote>
               <hr className="separator separator--dots"/>
             </div>
-             <hr className="separator separator--dotter"/>
+             <hr className="separator separator--line"/>
             <div className="row featurette">
               <div className="col-md-7">
                 <h2 className="featurette-heading">Try it out. <span className="text-muted">It'll blow your mind.</span></h2>
@@ -65,7 +65,7 @@ class Home extends React.Component {
                 <img className="featurette-image img-responsive center-block shadowed-img" src="images/cbdscience.jpg" data-src="holder.js/500x500/auto" alt="Generic placeholder image" />
               </div>
             </div>
-             <hr className="separator separator--dotter"/>
+             <hr className="separator separator--line"/>
             <div className="row featurette">
               <div className="col-md-7 col-md-push-5">
                 <h2 className="featurette-heading">Refined for a purpose. <span className="text-muted">For people like you.</span></h2>
@@ -75,7 +75,7 @@ class Home extends React.Component {
                 <img className="featurette-image img-responsive center-block shadowed-img" src="images/cbdoil.jpeg" data-src="holder.js/500x500/auto" alt="Generic placeholder image" />
               </div>
             </div>
-             <hr className="separator separator--dotter"/>
+             <hr className="separator separator--line"/>
             <div className="row featurette">
               <div className="col-md-7">
                 <h2 className="featurette-heading">Experience the relax. <span className="text-muted">There is no feeling like it.</span></h2>
@@ -85,7 +85,7 @@ class Home extends React.Component {
                 <img className="featurette-image img-responsive center-block shadowed-img" src="images/relaxed.jpg" data-src="holder.js/500x500/auto" alt="Generic placeholder image" />
               </div>
             </div>
-             <hr className="separator separator--dotter"/>
+             <hr className="separator separator--line"/>
             <footer>
               <p className="pull-right"><a href="#">Back to top</a></p>
               <p>© 2021 CBD Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>

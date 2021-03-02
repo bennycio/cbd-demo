@@ -71,7 +71,8 @@ class Store extends React.Component {
                 <div className="container products-container">
                 <div className="container">
                 </div>
-                <hr className="separator separator--dotter"/>
+                <h1>Products</h1>
+            <hr className="separator separator--dots"/>
                 <div className="row">
                 <div className="col-lg-4">
                 <div className="container page-wrapper">
