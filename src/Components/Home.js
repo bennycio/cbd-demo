@@ -7,18 +7,17 @@ class Home extends React.Component {
     render() {
       return (
           <div className="body">
-            <div className="header" style={{backgroundImage: `url(${process.env.PUBLIC_URL + 'images/cbd.jpg'})`}}>
-              <div className="brand-box">
-                <img src="images/logo.jpg" className="brand"/>
-              </div>
-              <div className="text-box">
-                <h1 className="heading-primary">
-                  <span className="heading-primary-main">CBD Incorporated</span>
-                  <span className="heading-primary-sub">The Absolute Best CBD</span>
-                </h1>
-                <NavLink className="btn btn-white btn-animated" to="/store" style={{ textDecoration: 'none' }}>Get Some Now</NavLink>
-              </div>
+            
+            <header style={{backgroundImage: `url(${process.env.PUBLIC_URL + 'images/background.jpeg'})`}}>
+              <div className="overlay">
+            <h1>Find your peace again</h1>
+            <h2>With Canna Kool</h2>
+            <hr className="separator separator--dots" />
+              <NavLink to="/store" style={{ textDecoration: 'none' }} > 
+              <button>See More</button>
+            </NavLink>
             </div>
+            </header>
           <div className="progress-container">
             <div className="progress" id="progressBar" /></div>
           <div className="container marketing">
