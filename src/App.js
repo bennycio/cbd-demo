@@ -6,6 +6,9 @@ import './css/App.scss';
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { spring, AnimatedSwitch } from 'react-router-transition';
+import { Nav, NavItem } from "shards-react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "shards-ui/dist/css/shards.min.css"
 
 const Home = lazy(()=>import('./Components/Home'))
 const Store = lazy(()=>import('./Components/Store'))
@@ -93,26 +96,23 @@ export default class App extends React.Component{
 
 const Navbar = () => {
   return (
-        <nav className="menu-container">
-            <NavLink className="navbar-item" activeClassName="is-active" to="/" style={{ textDecoration: 'none' }} >
-              Home
-            </NavLink>
-            <NavLink className="navbar-item" activeClassName="is-active" to="/store" style={{ textDecoration: 'none' }} > 
-            Store
-            </NavLink>
-            <NavLink className="navbar-item" activeClassName="is-active" to="/info" style={{ textDecoration: 'none' }}>
-            Info
-            </NavLink>
-            <NavLink className="navbar-item" activeClassName="is-active" to="/aboutus" style={{ textDecoration: 'none' }} >
-            About Us
-            </NavLink>
-            <NavLink className="navbar-item" activeClassName="is-active" to="/aboutus" style={{ textDecoration: 'none' }} >
-            Contact
-            </NavLink>
-            <NavLink className="navbar-item" activeClassName="is-active" to="/aboutus" style={{ textDecoration: 'none' }} >
-             Lab Results
-            </NavLink>
-        </nav>
+    <Nav justified>
+    <NavItem>
+      <NavLink to="/"><h1>Home</h1></NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to="/store"><h1>Store</h1></NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to="/info"><h1>Info</h1></NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to="/aboutus"><h1>About Us</h1></NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to="/labresults"><h1>Lab Results</h1></NavLink>
+    </NavItem>
+  </Nav>
   );
 };
 

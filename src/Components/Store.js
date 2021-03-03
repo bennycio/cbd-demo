@@ -39,7 +39,7 @@ export default class Store extends React.Component {
 
         return (
             <div className="body">
-                <div class="wrapper">
+                {/* <div class="wrapper">
                 <div class="slideshows">
                 <div class="slideshow slideshow--hero">
                     <div class="slides">
@@ -63,7 +63,7 @@ export default class Store extends React.Component {
                     </div>
                 </div>
                 </div>
-                </div>
+                </div> */}
                 <div className="container products-container">
                 <h1 className="centered">Products</h1>
                 <hr className="separator separator--dots"/>
