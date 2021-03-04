@@ -6,9 +6,8 @@ import './css/App.scss';
 import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import { Nav, NavItem } from "shards-react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "shards-ui/dist/css/shards.min.css"
+import 'antd/dist/antd.css';
 
 const Home = lazy(()=>import('./Components/Home'))
 const Store = lazy(()=>import('./Components/Store'))
@@ -94,26 +93,42 @@ export default class App extends React.Component{
 
 
 
-const Navbar = () => {
-  return (
-    <Nav justified>
-    <NavItem>
-      <NavLink to="/"><h1>Home</h1></NavLink>
-    </NavItem>
-    <NavItem>
-      <NavLink to="/store"><h1>Store</h1></NavLink>
-    </NavItem>
-    <NavItem>
-      <NavLink to="/info"><h1>Info</h1></NavLink>
-    </NavItem>
-    <NavItem>
-      <NavLink to="/aboutus"><h1>About Us</h1></NavLink>
-    </NavItem>
-    <NavItem>
-      <NavLink to="/labresults"><h1>Lab Results</h1></NavLink>
-    </NavItem>
-  </Nav>
-  );
+class Navbar extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.unselectHamburger = this.unselectHamburger.bind(this)
+  }
+
+
+  unselectHamburger(){
+    document.getElementById('hamburger').checked = false;
+  }
+
+  render(){
+    return (
+    <div className="front">
+      <input id="hamburger" class="hamburger" type="checkbox"/>
+      <label class="hamburger" for="hamburger">
+        <i />
+        <text>
+          <close>close</close>
+          <open>menu</open>
+        </text>
+      </label>
+      <section class="drawer-list">
+            <ul>
+              <li><NavLink className="nav-item" to="/" onClick={this.unselectHamburger}>Home</NavLink></li>
+              <li><NavLink className="nav-item" to="/store" onClick={this.unselectHamburger}>Store</NavLink></li>
+              <li><NavLink className="nav-item" to="/info" onClick={this.unselectHamburger}>Info</NavLink></li>
+              <li><NavLink className="nav-item" to="/aboutus" onClick={this.unselectHamburger}>About Us</NavLink></li>
+              <li><NavLink className="nav-item" to="/contact" onClick={this.unselectHamburger}>Contact</NavLink></li>
+              <li><NavLink className="nav-item" to="/labresults" onClick={this.unselectHamburger}>Lab Results</NavLink></li>
+            </ul>
+      </section>
+    </div>
+    )
+  }
 };
 
 const Loading = () => {
@@ -126,4 +141,5 @@ const Loading = () => {
     </div>
   )
 }
+
 
