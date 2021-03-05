@@ -1,10 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+$primary-color: #04B2d9;
+$secondary-color: #0583F2;
+$tertiary-color: #04c4d9;
 
-$primary-color: rgb(73, 180, 207);
-$secondary-color: rgb(0, 60, 255);
+$bg-color-1: rgb(255, 255, 255);
+$bg-color-2: rgb(221, 221, 221);
 
-$bg-color-1: white;
-$bg-color-2:#def9ff;
-
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   height: 100vh;
@@ -20,7 +26,7 @@ html {
   color: $bg-color-2;
   background-color: $bg-color-1;
   background-image: linear-gradient(to right, $bg-color-1, $bg-color-2);
-  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  font-family: 'Poppins', sans-serif;;
   overflow-x: hidden;
 }
 @mixin transition {
@@ -49,8 +55,8 @@ ul {
   padding: 0;
 }
 
-$main: $primary-color;
-$text: #FEFEFE;
+$main: grey;
+$text: #ffffff;
 $contrast: darken($main, 10%);
 
 .drawer-list {
@@ -238,177 +244,14 @@ label.hamburger {
   background-color: $primary-color;
 }
 
-header {
-  background-size: contain;
-	text-align: center;
-	width: 100%;
-	height: auto;
-	background-size: cover;
-	position: relative;
-	overflow: hidden;
-	border-radius: 0 0 85% 85% / 30%;
-}
-header .overlay{
-	width: 100%;
-	height: 100%;
-	padding: 50px;
-	color: rgb(255, 255, 255);
-	text-shadow: 1px 1px 1px #333;
-  background-image: linear-gradient( 135deg, rgba(75, 86, 248, 0.507) 10%, rgba(132, 255, 249, 0.527) 100%);
-	
-}
-
-header h1 {
-  padding-top: 10%;
-	font-size: 80px;
-	margin-bottom: 20px;
-  color: white;
-}
-
-header h2, header p {
-  color: white;
-	margin-bottom: 30px;
-}
-
-header button {
-	border: none;
-	outline: none;
-	padding: 10px 20px;
-	border-radius: 50px;
-	color: #333;
-	background: #fff;
-	margin-bottom: 50px;
-	box-shadow: 0 3px 20px 0 #0000003b;
-}
-header button:hover{
-	cursor: pointer;
-}
-
-header button:link,
-header button:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 20px 30px;
-  display: inline-block;
-  border-radius: 100px;
-  transition: all .2s;
-  position: relative;
-}
-
-header button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-header button:active {
-  transform: translateY(-1px);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-.progress-container {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 8px;
-  background: #ccc;
-  z-index: 30
-}
-
-/* The progress bar (scroll indicator) */
-.progress {
-  height: 8px;
-  background: $primary-color;
-  width: 0%;
-  z-index: 30;
-}
-
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  padding-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  background-image: none;
-}
-.marketing h2 {
-  font-weight: 400;
-}
-.marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
-}
 
 
 .shadowed {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.home-card {
-  height: 450px;
-  border-radius: 10%;
-  transition: all .2s ease-in-out; 
-  background-color: rgb(231, 231, 231);
-  align-items: center;
-  text-align: center;
-}
 
-.home-card:hover{
-  transform: scale(1.1);
-}
-
-
-.top-pad {
-  padding-top: 5%;
-}
-
-/* Featurettes
-------------------------- */
-
-.featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
-}
-
-/* Thin out the marketing headings */
-.featurette-heading {
-  font-weight: 300;
-  line-height: 1;
-  text-align: center;
-}
-
-.featurette-image {
-  border-radius: 8%;
-  width: 100%;
-  height: 100%;
-}
-
-/* RESPONSIVE CSS
--------------------------------------------------- */
 
 @media (min-width: 768px) {
-  /* Navbar positioning foo */
-  nav {
-    margin-top: 20px;
-  }
-  .navbar-wrapper .container {
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  .navbar-wrapper .navbar {
-    padding-right: 0;
-    padding-left: 0;
-    border-radius: 4px; /* The navbar becomes detached from the top, so we round the corners */
-  }
-
-  /* Bump up size of carousel content */
-  .carousel-caption p {
-    margin-bottom: 20px;
-    font-size: 21px;
-    line-height: 1.4;
-  }
-
   .featurette-heading {
     font-size: 50px;
   }
@@ -420,95 +263,12 @@ header button:active {
   }
 }
 
-#sq-cvv {
-  width: 60px;
-}
-
-#sq-expiration-date {
-  width: 75px;
-}
-
-
-#sq-postal-code {
-  width: 75px;
-  text-align: center;
-}
-
-#sq-ccbox {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  line-height: 1;
-  position: relative;
-  min-width: 315px;
-  border-radius: 10px;
-  transition: all 400ms linear;
-  width: 365px;
-  height: auto;
-  background-color: rgb(60, 121, 253);
-  padding: 10px;
-  margin: 0 auto;
-  color: #CCC;
-  font-weight: 600;
-}
-
-
-#sq-card-number {
-  width: 200px;
-}
-
-#cc-field-wrapper {
-  padding-top: 50px;
-  margin: 0;
-  display: inline-flex;
-}
-
-button.button-credit-card {
-  display: block;
-  line-height: 1.25em;
-  vertical-align: middle;
-  height: 45px;
-  width: 385px;
-  border-radius: 10px;
-  text-align: center;
-  margin: 5px auto;
-  font-size: 22px;
-  font-weight: 600;
-  background-color: #000;
-  color: #FFF;
-}
-
-button.wallet-button {
-  display: block;
-  margin: 5px auto;
-  border-radius: 10px;
-  height: 45px;
-  width: 300px;
-  overflow: hidden;
-  background-clip: border-box;
-  background-position: center;
-}
-
-#form-container {
-  padding-top: 10%;
-  width: 100%;
-}
-
-input::placeholder {
-  color: #000;
-}
-
-.sq-input--focus {
-  outline: -webkit-focus-ring-color auto 5px;
-}
-
-.sq-input--error {
-  box-shadow: inset 0px 0px 0px 3px rgba(255,0,0,0.5);
-}
 
 
 
 $separator-size: 5px;
 $separator-border-style: solid;
-$separator-border-color: $primary-color;
+$separator-border-color: black;
 $separator-space-top: 50px;
 $separator-space-bottom: 50px;
 
@@ -587,18 +347,6 @@ $separator-space-bottom: 50px;
   width: 0;
   animation: separator-width 1.5s ease-out forwards;
 }
-
-
-.menu-container{
-    position: absolute;
-    top: 5%;
-    right: 0;
-    left: 0;
-    text-align: center;
-    align-items: center;
-    z-index: 100;
-}
-
 
 
 .content {
@@ -727,133 +475,65 @@ $separator-space-bottom: 50px;
 }
 
 
-.home-card .btn-primary,
-.totals .btn-primary {
-   position: relative;
-   display: inline-block;
-   cursor: pointer;
-   outline: none;
-   border: 0;
-   vertical-align: middle;
-   text-decoration: none;
-   font-size: inherit;
-   font-family: inherit;
-   &.learn-more {
-     font-weight: 600;
-     color: white;
-     text-transform: uppercase;
-     padding: 1em 1.5em;
-     background: $secondary-color;
-     border: 2px solid $primary-color;
-     border-radius: 0.75em;
-     transform-style: preserve-3d;
-     transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), background 150ms cubic-bezier(0, 0, 0.58, 1);
-     &::before {
-       position: absolute;
-       content: '';
-       width: 100%;
-       height: 100%;
-       top: 0;
-       left: 0;
-       right: 0;
-       bottom: 0;
-       background: $primary-color;
-       border-radius: inherit;
-       box-shadow: 0 0 0 2px $primary-color, 0 0.625em 0 0  #d9f7cd;
-       transform: translate3d(0, 0.75em, -1em);
-       transition: transform 150ms cubic-bezier(0, 0, 0.58, 1), box-shadow 150ms cubic-bezier(0, 0, 0.58, 1);
-     }
-     &:hover {
-       background: $primary-color;
-       transform: translate(0, 0.25em);
-       &::before {
-         box-shadow: 0 0 0 2px $primary-color, 0 0.5em 0 0 #d9f7cd;
-         transform: translate3d(0, 0.5em, -1em);
-       }
-     }
-     &:active {
-       background: $primary-color;
-       transform: translate(0em, 0.75em);
-       &::before {
-         box-shadow: 0 0 0 2px $primary-color, 0 0 #d9f7cd;
-         transform: translate3d(0, 0, -1em);
-       }
-     }
-   }
- }
-
-
-
- .quote-container {
-
-   margin-top: 5%;
-   align-items: center;
-   text-align: center;
-
- }
-
-
- blockquote {
-   position: relative;
-   display: inline-block;
-   background: #eee;
-   padding: 40px 30px 30px 60px;
-   border-radius: 10px;
-   color: #333;
-   text-align: left;
-   
-   box-shadow: 1px 1px 1px #999,
-               2px 2px 1px #999,
-               3px 3px 1px #999;
-   transition-duration: .3s;
-   
-   span.author {
-     position: relative;
-     display: block;
-     text-align: right;
-     margin-top: 5px;
-     color: #999;
-     
-     i {
-       position: relative;
-       background: #eee;
-       padding-left: 10px;
-       font-style: italic;
-       z-index: 5;
-     }
-     
-     &::before {
-       display: block;
-       content: "";
-       position: absolute;
-       top: 50%;
-       left: 0;
-       width: 100%;
-       height: 1px;
-       background: #ccc;
-       z-index: 1;
-     }
-   }
-   
-   &:hover {
-     box-shadow: 1px 1px 5px #999,
-                 2px 2px 6px #999,
-                 3px 3px 7px #999;
-   }
-   
-   &::before {
-     display: block;
-     position: absolute;
-     top: 10px;
-     left: 10px;
-     content: "\"";
-     font-family: 'Bitter', serif;
-     font-size: 120px;
-     color: #999
-   }
- }
-
  .centered {
   text-align: center;
   align-items: center;
+}
+
+.large-icon {
+  color: rgb(65, 65, 65);
+  font-size: 50px;
+}
+
+.margin {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.small-margin{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.top-pad {
+  padding-top: 5%;
+}
+.padding-left{
+  padding-left: 5%;
+}
+.padding-right{
+  padding-right: 5%;
+}
+.margin-right{
+  margin-right: 5%;
+}
+.margin-left{
+  margin-left: 5%;
+}
+.margin-top-bottom {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+.padding-top-bottom {
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+.small-padding-top-bottom {
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+
+.raised-box
+{
+  -moz-box-shadow: -3px -2px 26px #000000;
+  -webkit-box-shadow: -3px -2px 26px #000000;
+  box-shadow: -3px -2px 26px #000000;
+}
+
+.circle-border {
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.align-right{
+  float: right;
 }

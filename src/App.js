@@ -3,8 +3,7 @@
 
 import React, {lazy, Suspense} from 'react';
 import './css/App.scss';
-import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'antd/dist/antd.css';
@@ -55,7 +54,7 @@ export default class App extends React.Component{
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.state = {
-      cart: 0,
+      cart: [],
     }
   }
 
@@ -68,7 +67,7 @@ export default class App extends React.Component{
         <Suspense fallback={Loading}>
         <BrowserRouter>
         <div>
-        <Navbar />
+          <Navbar />
           <AnimatedSwitch
           atEnter={bounceTransition.atEnter}
           atLeave={bounceTransition.atLeave}
@@ -76,12 +75,13 @@ export default class App extends React.Component{
           mapStyles={mapStyles}
           >
             <Route exact path="/" component={Home} />
-            <Route exact path="/store" component={Store} />
-            <Route exact path="/info" component={Info} />
+            <Route exact path="/store" ><Store cart={this.state.cart} handleChange={this.handleChange}/></Route>
+            <Route exzact path="/info" component={Info} />
             <Route exact path="/checkout" component={PaymentPage} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route render={() => <div>Not Found</div>} />
           </AnimatedSwitch>
+          <Footer/>
         </div>
       </BrowserRouter>
       </Suspense>
@@ -107,6 +107,7 @@ class Navbar extends React.Component {
 
   render(){
     return (
+      
     <div className="front">
       <input id="hamburger" class="hamburger" type="checkbox"/>
       <label class="hamburger" for="hamburger">
@@ -140,6 +141,18 @@ const Loading = () => {
       </div>
     </div>
   )
+}
+
+
+class Footer extends React.Component {
+
+
+  render(){
+    return (
+      <footer>
+    </footer>
+    )
+  }
 }
 
 

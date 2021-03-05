@@ -1,3 +1,92 @@
+$primary-color: rgb(73, 180, 207);
+$secondary-color: rgb(0, 60, 255);
+
+$bg-color-1: white;
+$bg-color-2:#def9ff;
+#sq-cvv {
+  width: 60px;
+}
+
+#sq-expiration-date {
+  width: 75px;
+}
+
+
+#sq-postal-code {
+  width: 75px;
+  text-align: center;
+}
+
+#sq-ccbox {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1;
+  position: relative;
+  min-width: 315px;
+  border-radius: 10px;
+  transition: all 400ms linear;
+  width: 365px;
+  height: auto;
+  background-color: rgb(60, 121, 253);
+  padding: 10px;
+  margin: 0 auto;
+  color: #CCC;
+  font-weight: 600;
+}
+
+
+#sq-card-number {
+  width: 200px;
+}
+
+#cc-field-wrapper {
+  padding-top: 50px;
+  margin: 0;
+  display: inline-flex;
+}
+
+button.button-credit-card {
+  display: block;
+  line-height: 1.25em;
+  vertical-align: middle;
+  height: 45px;
+  width: 385px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 5px auto;
+  font-size: 22px;
+  font-weight: 600;
+  background-color: #000;
+  color: #FFF;
+}
+
+button.wallet-button {
+  display: block;
+  margin: 5px auto;
+  border-radius: 10px;
+  height: 45px;
+  width: 300px;
+  overflow: hidden;
+  background-clip: border-box;
+  background-position: center;
+}
+
+#form-container {
+  padding-top: 10%;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #000;
+}
+
+.sq-input--focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+.sq-input--error {
+  box-shadow: inset 0px 0px 0px 3px rgba(255,0,0,0.5);
+}
+
 .sq-payment-form {
     color: #373F4A;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
