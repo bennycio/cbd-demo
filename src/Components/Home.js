@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Row, Col, Card, Typography} from 'antd';
 import '../css/Home.scss'
@@ -6,10 +6,9 @@ import {FaFlask, FaDollarSign, FaRunning, FaAllergies} from 'react-icons/fa'
 
 const {Title, Paragraph} = Typography;
 
-export default class Home extends React.Component {
+const Home = memo(() => {
 
 
-    render() {
       return (
           <div className="body">
             {//style={{backgroundImage: `url(${process.env.PUBLIC_URL + 'images/background.jpeg'})`}}
@@ -28,7 +27,7 @@ export default class Home extends React.Component {
               </footer>
             </section>
           <div className="container-fluid marketing">
-            <div className="centered margin-top-bottom"><Title level={1}>Welcome to Canna Kool. <br />An all natural solution that makes it easy <br />to get the relief that you need.</Title></div>
+            <div className="centered margin-top-bottom"><Title level={1}>Introducing Canna Kool. <br />An all natural solution that makes it easy <br />to get the relief that you need.</Title></div>
             <div className="small-margin">
               <Row gutter={16} className="margin">
                 <Col xs={24} sm={24} md={12} lg={6} xl={6}>
@@ -49,7 +48,7 @@ export default class Home extends React.Component {
                 <Col xs={24} sm={24} md={12} lg={6} xl={6}>
                 <i className="large-icon"><FaAllergies /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>No Unpleasant Surprises</Title>
-                  <Paragraph>Designed with a scent free and skin safe formula, you will never have to worry about awkward sensations and pungent smells ruining your calming experiences.</Paragraph>
+                  <Paragraph>Designed with a scent free and skin safe formula, you will never have to worry about awkward sensations and pungent smells ruining your experiences.</Paragraph>
                 </Col>
               </Row>
             </div>
@@ -113,5 +112,5 @@ export default class Home extends React.Component {
           </div>
         </div>
         );
-    }
-  }
+  });
+  export default Home;

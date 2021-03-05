@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, {useState, useContext} from 'react';
 
 import {
     SquarePaymentForm,
@@ -11,41 +11,25 @@ import {
     CreditCardSubmitButton,
   } from 'react-square-payment-form';
   import '../css/PaymentPage.scss';
+  import {CartContext} from '../App';
   
   const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
   const LOCATION_ID = 'LMGSEFQN3X8R2';
   
   
-  export default class PaymentPage extends React.Component{
+  const PaymentPage = () => {
 
-    constructor(props){
-      super(props)
-      this.handleChange = this.handleChange.bind(this)
-      this.cardNonceResponseReceived = this.cardNonceResponseReceived.bind(this)
-      this.createPaymentRequest = this.createPaymentRequest.bind(this)
-      this.createVerificationDetails = this.createVerificationDetails.bind(this)
-      this.postalCode = this.postalCode.bind(this)
-      this.focusField = this.focusField.bind(this)
-      this.state = {
-        cart: this.props.cart,
-        data: {
-          firstName: "John",
-          lastName: "Doe",
-          email: "johndoe@gmail.com"
-        }
-      }
-    }
+    const {cart, setCart} = useContext(CartContext);
 
-    handleChange(value){
-      this.setState({
-        errorMessages: this.state.errorMessages,
-        cart: this.state.cart,
-        data: value
-      }
-      );
-    }
+    const [data, setData] = useState({
+      firstName: "John",
+      lastName: "Doe",
+      email: "johndoe@gmail.com"
+    });
+
+
   
-    cardNonceResponseReceived(errors, nonce, cardData, buyerVerificationToken) {
+    function cardNonceResponseReceived(errors, nonce, cardData, buyerVerificationToken) {
       if (errors) {
         console.log(errors)
         return;
@@ -55,7 +39,7 @@ import {
       // MAKE PAYMENT
     }
   
-    createPaymentRequest() {
+    function createPaymentRequest() {
       return {
         requestShippingAddress: false,
         requestBillingInfo: true,
@@ -63,28 +47,28 @@ import {
         countryCode: 'US',
         total: {
           label: 'MERCHANT NAME',
-          amount: this.state.cart + '00',
+          amount: cart + '00',
           pending: false,
         },
         lineItems: [
           {
             label: 'Subtotal',
-            amount:  this.state.cart + '00',
+            amount:  cart + '00',
             pending: false,
           },
         ],
       };
     }
   
-    createVerificationDetails() {
+    function createVerificationDetails() {
       return {
-        amount: this.state.cart + '00',
+        amount: cart + '00',
         currencyCode: 'USD',
         intent: 'CHARGE',
         billingContact: {
-          familyName: this.state.data.lastName,
-          givenName: this.state.data.firstName,
-          email: this.state.data.email,
+          familyName: data.lastName,
+          givenName: data.firstName,
+          email: data.email,
           country: 'US',
           city: 'London',
           addressLines: ["1235 Emperor's Gate"],
@@ -94,26 +78,25 @@ import {
       };
     }
   
-    postalCode() {
+    function postalCode() {
       const postalCode = '12345'; // your logic here
       return postalCode;
     }
   
-    focusField() {
+    function focusField() {
       return 'cardNumber';
     }
 
-    render(){ 
-      return (
+    return (
       <SquarePaymentForm
         sandbox={true}
         applicationId={APPLICATION_ID}
         locationId={LOCATION_ID}
-        cardNonceResponseReceived={this.cardNonceResponseReceived}
-        createPaymentRequest={this.createPaymentRequest}
-        createVerificationDetails={this.createVerificationDetails}
-        postalCode={this.postalCode}
-        focusField={this.focusField}
+        cardNonceResponseReceived={cardNonceResponseReceived}
+        createPaymentRequest={createPaymentRequest}
+        createVerificationDetails={createVerificationDetails}
+        postalCode={postalCode}
+        focusField={focusField}
        >
          <div style={{
            alignItems: "center",
@@ -136,9 +119,10 @@ import {
           </div>
         </fieldset>
   
-        <CreditCardSubmitButton>Pay ${this.state.cart}</CreditCardSubmitButton>
+        <CreditCardSubmitButton>Pay ${cart}</CreditCardSubmitButton>
         </div>
       </SquarePaymentForm>
     );
-    }
   };
+
+  export default PaymentPage;

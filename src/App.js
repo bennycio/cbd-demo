@@ -1,7 +1,7 @@
 
 
 
-import React, {lazy, Suspense} from 'react';
+import React, {useState, lazy, Suspense, createContext} from 'react';
 import './css/App.scss';
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
 import { spring, AnimatedSwitch } from 'react-router-transition';
@@ -48,64 +48,56 @@ const bounceTransition = {
   },
 };
 
-export default class App extends React.Component{
+export const CartContext = createContext({
+  cart: [],
+  setCart: () => {}
+});
 
-  constructor(props){
-    super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.state = {
-      cart: [],
-    }
-  }
+const App = () =>{ 
 
-  handleChange(value){
-    this.setState({cart: value})
-  }
+  const [cart, setCart] = useState([]);
+  const value = {cart, setCart};
 
-  render() {
-    return(
-        <Suspense fallback={Loading}>
-        <BrowserRouter>
-        <div>
-          <Navbar />
-          <AnimatedSwitch
-          atEnter={bounceTransition.atEnter}
-          atLeave={bounceTransition.atLeave}
-          atActive={bounceTransition.atActive}
-          mapStyles={mapStyles}
-          >
-            <Route exact path="/" component={Home} />
-            <Route exact path="/store" ><Store cart={this.state.cart} handleChange={this.handleChange}/></Route>
-            <Route exzact path="/info" component={Info} />
+  return(
+      <Suspense fallback={Loading}>
+      <BrowserRouter>
+      <div>
+        <Navbar />
+        <AnimatedSwitch
+        atEnter={bounceTransition.atEnter}
+        atLeave={bounceTransition.atLeave}
+        atActive={bounceTransition.atActive}
+        mapStyles={mapStyles}
+        >
+          <Route exact path="/" component={Home} />
+          <CartContext.Provider value={value}>
+            <Route exact path="/store" component={Store}/>
             <Route exact path="/checkout" component={PaymentPage} />
-            <Route exact path="/aboutus" component={AboutUs} />
-            <Route render={() => <div>Not Found</div>} />
-          </AnimatedSwitch>
-          <Footer/>
-        </div>
-      </BrowserRouter>
-      </Suspense>
-    )
-  }
+          </CartContext.Provider>
+          <Route exzact path="/info" component={Info} />
+          <Route exact path="/checkout" component={PaymentPage} />
+          <Route exact path="/aboutus" component={AboutUs} />
+          <Route render={() => <div>Not Found</div>} />
+        </AnimatedSwitch>
+        <Footer/>
+      </div>
+    </BrowserRouter>
+    </Suspense>
+  );
 }
 
 
 
 
 
-class Navbar extends React.Component {
-
-  constructor(props) {
-    super(props)
-    this.unselectHamburger = this.unselectHamburger.bind(this)
-  }
+const Navbar = () => {
 
 
-  unselectHamburger(){
+
+  const unselectHamburger = () =>{
     document.getElementById('hamburger').checked = false;
   }
 
-  render(){
     return (
       
     <div className="front">
@@ -119,17 +111,16 @@ class Navbar extends React.Component {
       </label>
       <section class="drawer-list">
             <ul>
-              <li><NavLink className="nav-item" to="/" onClick={this.unselectHamburger}>Home</NavLink></li>
-              <li><NavLink className="nav-item" to="/store" onClick={this.unselectHamburger}>Store</NavLink></li>
-              <li><NavLink className="nav-item" to="/info" onClick={this.unselectHamburger}>Info</NavLink></li>
-              <li><NavLink className="nav-item" to="/aboutus" onClick={this.unselectHamburger}>About Us</NavLink></li>
-              <li><NavLink className="nav-item" to="/contact" onClick={this.unselectHamburger}>Contact</NavLink></li>
-              <li><NavLink className="nav-item" to="/labresults" onClick={this.unselectHamburger}>Lab Results</NavLink></li>
+              <li><NavLink className="nav-item" to="/" onClick={unselectHamburger}>Home</NavLink></li>
+              <li><NavLink className="nav-item" to="/store" onClick={unselectHamburger}>Store</NavLink></li>
+              <li><NavLink className="nav-item" to="/info" onClick={unselectHamburger}>Info</NavLink></li>
+              <li><NavLink className="nav-item" to="/aboutus" onClick={unselectHamburger}>About Us</NavLink></li>
+              <li><NavLink className="nav-item" to="/contact" onClick={unselectHamburger}>Contact</NavLink></li>
+              <li><NavLink className="nav-item" to="/labresults" onClick={unselectHamburger}>Lab Results</NavLink></li>
             </ul>
       </section>
     </div>
-    )
-  }
+    );
 };
 
 const Loading = () => {
@@ -141,18 +132,16 @@ const Loading = () => {
       </div>
     </div>
   )
-}
+};
 
 
-class Footer extends React.Component {
-
-
-  render(){
+const Footer = () => {
     return (
       <footer>
     </footer>
     )
-  }
 }
+
+export default App;
 
 

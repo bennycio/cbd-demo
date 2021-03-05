@@ -1,11 +1,10 @@
-import React from 'react';
+import React, {memo} from 'react';
 import '../css/Info.scss'
 
 
-export default class Info extends React.Component {
+const Info =  memo(() => {
 
 
-    render(){
         return (
           <div class="slider-container">
           <div class="slider-control left inactive"></div>
@@ -66,7 +65,6 @@ export default class Info extends React.Component {
             </div>
           </div>
         </div>
-        )}
-
-
-}
+        );
+});
+export default Info;
