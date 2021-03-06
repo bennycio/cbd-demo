@@ -6,6 +6,6 @@ exports.handler = async function(event, context) {
     const auth = process.env.REACT_APP_SQUARE_APPLICATION_ID
     return {
         statusCode: 200,
-        body: JSON.stringify({message: "Hello World", event: event, context: context}),
+        body: JSON.stringify({message: auth}),
     };
 }
