@@ -203,6 +203,7 @@ const Store = () => {
     const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
     const LOCATION_ID = 'LMGSEFQN3X8R2';
     const URL = process.env.SQUARE_SERVICE_ENDPOINT;
+    console.log('URL' + URL);
 
     var total = 0;
 
