@@ -203,7 +203,9 @@ const Store = () => {
     const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
     const LOCATION_ID = 'LMGSEFQN3X8R2';
     const URL = process.env.REACT_APP_SQUARE_SERVICE_ENDPOINT;
-    console.log('URL' + URL);
+    const ID = process.env.REACT_APP_SQUARE_APPLICATION_ID;
+    console.log('URL ' + URL);
+    console.log('id ' + ID)
 
     var total = 0;
 
@@ -213,18 +215,19 @@ const Store = () => {
 
     async function checkoutRequest(data) {
         // Default options are marked with *
+        console.log(JSON.stringify(data));
         const response = await fetch(URL, {
           method: 'POST', 
-          mode: 'cors',
+          mode: 'no-cors',
           headers: {
             'Square-Version': '2021-02-26',
-            'Authorization': process.env.REACT_APP_SQUARE_APPLICATION_ID,
+            'Authorization': 'Bearer ' + ID,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data)
         });
         return response.json();
-      }
+    }
 
 
 
@@ -243,6 +246,7 @@ const Store = () => {
               currency: "USD"
           },
           source_id: nonce,
+          verification_token: buyerVerificationToken,
           autocomplete: true,
           location_id: LOCATION_ID, 
       }
