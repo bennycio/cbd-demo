@@ -203,9 +203,7 @@ const Store = () => {
     const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
     const LOCATION_ID = 'LMGSEFQN3X8R2';
     const URL = process.env.REACT_APP_SQUARE_SERVICE_ENDPOINT;
-    const ID = process.env.REACT_APP_SQUARE_APPLICATION_ID;
     console.log('URL ' + URL);
-    console.log('id ' + ID)
 
     var total = 0;
 
@@ -220,8 +218,6 @@ const Store = () => {
           method: 'POST', 
           mode: 'no-cors',
           headers: {
-            'Square-Version': '2021-02-26',
-            'Authorization': 'Bearer ' + ID,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data)
