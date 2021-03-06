@@ -1,4 +1,4 @@
-
+const fetch = require("node-fetch");
 
 exports.handler = async function(event, context) {
     const body = event.body;

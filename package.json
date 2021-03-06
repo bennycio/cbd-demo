@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.7.3",
     "antd": "^4.13.0",
     "framer-motion": "^3.9.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.0",
