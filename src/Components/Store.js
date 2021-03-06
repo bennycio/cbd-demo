@@ -253,11 +253,11 @@ const Store = () => {
     function createPaymentRequest() {
       return {
         requestShippingAddress: false,
-        requestBillingInfo: true,
+        requestBillingInfo: false,
         currencyCode: 'USD',
         countryCode: 'US',
         total: {
-          label: 'MERCHANT NAME',
+          label: 'cbd-demo',
           amount: total + '00',
           pending: false,
         },
