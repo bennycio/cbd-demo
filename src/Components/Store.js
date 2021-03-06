@@ -1,9 +1,18 @@
 import React, {useContext, useState} from 'react';
-import { NavLink } from 'react-router-dom';
 import '../css/Store.scss'
-import {FaInfoCircle, FaShoppingCart} from 'react-icons/fa'
-import {Typography, Divider, Row, Col, Avatar, Drawer, Button} from 'antd';
+import {FaInfoCircle, FaShoppingCart, FaRegPlusSquare, FaRegMinusSquare} from 'react-icons/fa'
+import {Typography, Divider, Row, Col, Avatar, Drawer, Button, Modal} from 'antd';
 import {CartContext} from '../App'
+import {
+    SquarePaymentForm,
+    CreditCardCVVInput,
+    CreditCardExpirationDateInput,
+    CreditCardNumberInput,
+    CreditCardPostalCodeInput,
+    CreditCardSubmitButton,
+  } from 'react-square-payment-form';
+
+import { v4 as uuidv4 } from 'uuid';
 
 const {Title} = Typography;
 
@@ -59,24 +68,24 @@ const Store = () => {
 
     const {cart, setCart} = useContext(CartContext);
 
-    const [count, setCount] = useState(0);
-
+    const clone = JSON.parse(JSON.stringify(cart));
+    var index = clone.findIndex(i => i.name === props.name);
+    const count = clone[index].count;
 
     console.log(props)
     return(
-        <span className="add-to-cart">
-            <span className="counter shadowed-img" onClick={() => {
+        <div className="add-to-cart">
+            <span className="counter solid-icon" onClick={() => {
                 if (count > 0){
-                    setCount(count - 1)
-                    setCart(cart - props.cost)
+                    clone[index].count = count - 1;
+                    setCart(clone)
                 }
-            }}>-</span>
-            <span className="txt">{count}</span>
-            <span className="counter shadowed-img" onClick={() => {
-                setCount(count + 1)
-                setCart(cart + props.cost)
-            }}>+</span>
-        </span>
+            }}><FaRegMinusSquare /></span>
+            <span className=" counter solid-icon" onClick={() => {
+                clone[index].count = count + 1;
+                setCart(clone)
+            }}><FaRegPlusSquare /></span>
+        </div>
     );
   }
 
@@ -87,10 +96,12 @@ const Store = () => {
 
     const [added, setAdded] = useState(cart.includes({name: props.name, cost: props.cost}))
 
+
+
     function changeAdded(){
         const clone = JSON.parse(JSON.stringify(cart));
         if (added === false){
-            clone.push({name: props.name, cost: props.cost});
+            clone.push({name: props.name, cost: props.cost, count: 1});
             setCart(clone);
             setAdded(true)
         }
@@ -152,16 +163,19 @@ const Store = () => {
         cartItems.push(
             <div key={item.name}>
                 <p>{item.name}</p>
-                <p>{item.cost}</p>
+                <p>Cost: ${item.cost}</p>
+                <p>Count: {item.count}</p>
+                <Counter name={item.name}/>
+                <Divider />
             </div>
         );
     });
 
     return (
     <div>
-        <button className="circle-border margin-left" onClick={openDrawer}><Avatar size="large" icon={<FaShoppingCart />} className="cart-icon"/></button>
+        <button className="circle-border margin-left" onClick={openDrawer}><Avatar size="large" icon={<FaShoppingCart />} className="solid-icon"/></button>
     <Drawer
-    widht={640}
+    width={480}
     title="Cart"
     placement="left"
     closable={true}
@@ -169,10 +183,171 @@ const Store = () => {
     visible={visible}
     >
         {cartItems}
-        <Button type="primary" className="grey"><NavLink to="/checkout">Checkout</NavLink></Button>
+        <Checkout />
     </Drawer>
     </div>
     );
   }
 
+  const Checkout = () => {
+
+    const {cart, setCart} = useContext(CartContext);
+
+    const [data, setData] = useState({
+      firstName: "John",
+      lastName: "Doe",
+      email: "johndoe@gmail.com"
+    });
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
+    const LOCATION_ID = 'LMGSEFQN3X8R2';
+    const URL = process.env.SQUARE_SERVICE_ENDPOINT;
+
+    var total = 0;
+
+    for (let item of cart){
+        total+=(item.cost * item.count);
+    }
+
+    async function checkoutRequest(data) {
+        // Default options are marked with *
+        const response = await fetch(URL, {
+          method: 'POST', 
+          mode: 'cors',
+          headers: {
+            'Square-Version': '2021-02-26',
+            'Authorization': process.env.SQUARE_APPLICATION_ID,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+        return response.json();
+      }
+
+
+
+  
+    function cardNonceResponseReceived(errors, nonce, cardData, buyerVerificationToken) {
+      if (errors) {
+        console.log(errors)
+        return;
+      }
+  
+      alert('nonce created: ' + nonce + ', buyerVerificationToken: ' + buyerVerificationToken);
+      var data = {
+          idempotency_key: uuidv4(),
+          amount_money: {
+              amount: total * 100,
+              currency: "USD"
+          },
+          source_id: nonce,
+          autocomplete: true,
+          location_id: LOCATION_ID, 
+      }
+      var response = checkoutRequest(data);
+      console.log(response)
+    }
+  
+    function createPaymentRequest() {
+      return {
+        requestShippingAddress: false,
+        requestBillingInfo: true,
+        currencyCode: 'USD',
+        countryCode: 'US',
+        total: {
+          label: 'MERCHANT NAME',
+          amount: total + '00',
+          pending: false,
+        },
+        lineItems: [
+          {
+            label: 'Subtotal',
+            amount:  total + '00',
+            pending: false,
+          },
+        ],
+      };
+    }
+  
+    function createVerificationDetails() {
+      return {
+        amount: total + '00',
+        currencyCode: 'USD',
+        intent: 'CHARGE',
+        billingContact: {
+          familyName: data.lastName,
+          givenName: data.firstName,
+          email: data.email,
+          country: 'US',
+          city: 'London',
+          addressLines: ["1235 Emperor's Gate"],
+          postalCode: 'SW7 4JA',
+          phone: '020 7946 0532',
+        },
+      };
+    }
+  
+    function postalCode() {
+      const postalCode = '12345'; // your logic here
+      return postalCode;
+    }
+  
+    function focusField() {
+      return 'cardNumber';
+    }
+    
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
+    return (
+      <div>
+          <Button type="primary" className="grey" onClick={showModal}>Checkout</Button>
+          <Modal title="Checkout" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} footer={null}>
+            <SquarePaymentForm
+                sandbox={true}
+                applicationId={APPLICATION_ID}
+                locationId={LOCATION_ID}
+                cardNonceResponseReceived={cardNonceResponseReceived}
+                createPaymentRequest={createPaymentRequest}
+                createVerificationDetails={createVerificationDetails}
+                postalCode={postalCode}
+                focusField={focusField}
+                >
+                <div style={{
+                alignItems: "center",
+                textAlign: "center",
+                }}>
+                <fieldset className="sq-fieldset">
+                <CreditCardNumberInput />
+        
+                <div className="sq-form-third">
+                    <CreditCardExpirationDateInput />
+                </div>
+        
+                <div className="sq-form-third">
+                    <CreditCardPostalCodeInput />
+                </div>
+        
+                <div className="sq-form-third">
+                    <CreditCardCVVInput />
+                </div>
+                </fieldset>
+        
+                <CreditCardSubmitButton>Pay ${total}</CreditCardSubmitButton>
+                </div>
+            </SquarePaymentForm>
+          </Modal>
+      </div>
+    );
+  };
   export default Store;

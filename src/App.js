@@ -10,7 +10,6 @@ import 'antd/dist/antd.css';
 
 const Home = lazy(()=>import('./Components/Home'))
 const Store = lazy(()=>import('./Components/Store'))
-const PaymentPage = lazy(()=>import('./Components/PaymentPage'))
 const Info = lazy(()=>import('./Components/Info'))
 const AboutUs = lazy(()=>import('./Components/AboutUs'))
 
@@ -72,10 +71,8 @@ const App = () =>{
           <Route exact path="/" component={Home} />
           <CartContext.Provider value={value}>
             <Route exact path="/store" component={Store}/>
-            <Route exact path="/checkout" component={PaymentPage} />
           </CartContext.Provider>
-          <Route exzact path="/info" component={Info} />
-          <Route exact path="/checkout" component={PaymentPage} />
+          <Route exact path="/info" component={Info} />
           <Route exact path="/aboutus" component={AboutUs} />
           <Route render={() => <div>Not Found</div>} />
         </AnimatedSwitch>
