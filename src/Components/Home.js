@@ -88,7 +88,7 @@ const Home = memo(() => {
           <div className="marketing">
             <div className="centered margin-top-bottom"><Title level={1}>Introducing Canna Kool. <br />An all natural solution that makes it easy <br />to get the relief that you need.</Title></div>
             <div className="small-margin container infographics">
-              <Row gutter={16} className="margin">
+              <Row gutter={30} justify='center'>
                 <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                   <i className="large-icon"><FaFlask /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Lab Tested Hemp</Title>
@@ -102,7 +102,7 @@ const Home = memo(() => {
                 <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <i className="large-icon"><FaRunning /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Real Results</Title>
-                  <Paragraph>Over 100x stronger than the average CBD Roll-on and designed with hard workers in mind, you won't find a more powerful solution to pain and anxiety.</Paragraph>
+                  <Paragraph>Over 100x stronger than the average CBD Roll-on and designed with hard workers in mind, you won't find a more powerful relief solution.</Paragraph>
                 </Col>
               </Row>
             </div>
