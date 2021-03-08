@@ -19,6 +19,7 @@ html {
   width: 100vw;
   margin: 0;
   padding: 0;
+  left: 0;
   box-sizing: border-box;
   letter-spacing: 1.1px;
   overflow-x: hidden;
@@ -84,7 +85,7 @@ $contrast: darken($main, 10%);
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow: auto;
+    overflow: hidden;
     overflow-x: hidden;
     pointer-events: auto;
   }
@@ -305,7 +306,6 @@ $separator-space-bottom: 50px;
   border-radius: 50%;
 }
 .separator--dots {
-  overflow: visible;
   border: 0;
   @include dot();
   position: relative;
