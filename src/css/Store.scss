@@ -1,22 +1,32 @@
-$primary-color: #04B2d9;
-$secondary-color: #0583F2;
-$tertiary-color: #04c4d9;
+$primary-color: #05C7F2;
+$secondary-color: #262A73;
+$tertiary-color: #2E3F8E;
+$accent-color: #1E2159;
 
-$bg-color-1: rgb(255, 255, 255);
+$primary-mint-color: #05C7F2;
+$secondary-mint-color: #0FA644;
+$tertiary-mint-color: #3365A6;
+$accent-mint-color: #03A688;
+
+$bg-color-1: #F2F2F2;
 $bg-color-2: rgb(221, 221, 221);
 
 
 
 .store-header {
-  background: gray;
+  background: $secondary-color;
 }
 
 .divider-lower {
   padding-top: 2%;
 }
 
+// .mint {
+//   background: linear-gradient(0.25turn, $primary-mint-color, $secondary-mint-color, $tertiary-mint-color);
+// }
+
 .product-wrapper{
-  width: 300px;
+  width: 400px;
   height: 500px;
   background: white;
   margin: auto;
@@ -38,10 +48,10 @@ $bg-color-2: rgb(221, 221, 221);
       height: 80%;
       width:100%;
       background: url(https://cdn.shopify.com/s/files/1/2010/4089/products/CryoFreeze_1000x1000.wthoutlid.jpg?v=1602007430) no-repeat center center; 
-  -webkit-background-size: 100%;
-  -moz-background-size: 100%;
-  -o-background-size: 100%;
-  background-size: 100%;
+      -webkit-background-size: 100%;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      background-size: 100%;
     }
     .bottom{
       width: 200%;
@@ -75,15 +85,15 @@ $bg-color-2: rgb(221, 221, 221);
           i{
             font-size:30px;
             padding:30px;
-            color: gray;
+            color: $primary-color;
             transition: transform 0.5s;
           }
           &:hover{
-            background: gray;
+            background: $primary-color;
           }
           &:hover i{
             transform: translateY(5px);
-            color:gray;
+            color:$secondary-color;
           }
         }
       }
@@ -121,8 +131,9 @@ $bg-color-2: rgb(221, 221, 221);
   }
   
   .inside{
+    color: white;
     z-index:9;
-    background: gray;
+    background: $secondary-color;
     width:140px;
     height:140px;
     position: absolute;
@@ -165,7 +176,8 @@ $bg-color-2: rgb(221, 221, 221);
         text-align:left;
         width:100%;
       }
-      h1, p, table{
+      h1, h2, h3, h4, h5, p, table{
+        text-align: center;
         color: white;
       }
       p{
@@ -212,7 +224,7 @@ $white: #fff;
       margin: 0;
       width: 3rem;
       height: 3rem;
-      background: grey;
+      background: $secondary-color;
       border-radius: 1.625rem;
       .icon {
         @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
@@ -250,7 +262,7 @@ $white: #fff;
       bottom: 0;
       padding: 0.75rem 0;
       margin: 0 0 0 1.85rem;
-      color: grey;
+      color: $secondary-color;
       font-weight: 700;
       line-height: 1.6;
       text-align: center;

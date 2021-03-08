@@ -1,10 +1,15 @@
-$primary-color: #04B2d9;
-$secondary-color: #0583F2;
-$tertiary-color: #04c4d9;
+$primary-color: #05C7F2;
+$secondary-color: #262A73;
+$tertiary-color: #2E3F8E;
+$accent-color: #1E2159;
 
-$bg-color-1: rgb(218, 248, 255);
-$bg-color-2: rgb(164, 238, 255);
- 
+$primary-mint-color: #05C7F2;
+$secondary-mint-color: #0FA644;
+$tertiary-mint-color: #3365A6;
+$accent-mint-color: #03A688;
+
+$bg-color-1: #F2F2F2;
+$bg-color-2: rgb(221, 221, 221);
 
 #header {
 	display: flex;
@@ -34,9 +39,9 @@ $bg-color-2: rgb(164, 238, 255);
 	padding: 1em;
 	box-sizing: border-box;
 	color: white;
-	background: center center no-repeat;
+	background: center center no-repeat linear-gradient(0.75turn, $primary-color, $tertiary-color, $secondary-color);
 	background-size: cover;
-    box-shadow: 0px 0px 8px 2px #000000;
+  box-shadow: 0px 0px 8px 2px #000000;
 }
 
 .hero-title {
@@ -67,6 +72,33 @@ $bg-color-2: rgb(164, 238, 255);
     color: black
 }
 
+.infographics {
+  text-align: center;
+  align-items: center;
+}
+
+.particle {
+	position: absolute;
+ 	border-radius: 50%;
+}
+@for $i from 1 through 60 {
+	@keyframes particle-animation-#{$i} {
+		100% {
+			transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+		}
+	}
+	
+	.particle:nth-child(#{$i}){
+		animation: particle-animation-#{$i} 60s infinite;
+		$size: random(5) + 5 + px;
+		opacity: random(100)/100;
+		height: $size;
+		width: $size;
+		animation-delay: -$i * .2s;
+		transform: translate3d((random(90) * 1vw), (random(90) * 1vh), (random(100) * 1px));
+		background: hsl(random(360), 70%, 50%);
+	}
+}
 
 
 .marketing {
@@ -82,7 +114,7 @@ $bg-color-2: rgb(164, 238, 255);
 
 
 .home-card-container {
-    background-color: rgb(182, 182, 182);
+    background: linear-gradient(0.25turn, $tertiary-color,$primary-color, $secondary-color);;
     padding-bottom: 5%;
     padding-top: 5%;
     margin-top: 5%;
@@ -186,4 +218,20 @@ $bg-color-2: rgb(164, 238, 255);
     border-radius: 8%;
     width: 100%;
     height: 100%;
+  }
+
+  .call-for-action{
+    background: rgb(182, 182, 182);
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .call-for-action img {
+    width: 90%;
+    height: auto;
+  }
+
+  .call-text {
+    margin-top: 10%;
   }

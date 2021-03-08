@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import '../css/Store.scss'
 import {FaInfoCircle, FaShoppingCart, FaRegPlusSquare, FaRegMinusSquare} from 'react-icons/fa'
-import {Typography, Divider, Row, Col, Avatar, Drawer, Button, Modal} from 'antd';
+import {Typography, Divider, Row, Col, Avatar, Drawer, Button, Modal, Affix} from 'antd';
 import {CartContext} from '../App'
 import {
     SquarePaymentForm,
@@ -14,6 +14,8 @@ import {
 
 import { v4 as uuidv4 } from 'uuid';
 
+
+
 const {Title} = Typography;
 
 
@@ -21,40 +23,59 @@ const Store = () => {
 
 
 
-    const premium = {
-        name: "Premium",
-        cost: 25,
-        description: "Fantastic effects at a budget"
-    }
-    const ultimate = {
-        name: "Ultimate",
+    const ckStandard = {
+        name: "Scentless Standard",
         cost: 50,
-        description: "Will make you feel what its like to feel"
+        description: "Fantastic effects without a scent",
+        size: '2oz'
     }
-    const soulWrencher = {
-        name: "Soul-Wrencher",
-        cost: 100,
-        description: "To the moon"
+    const ckXL = {
+        name: "Scentless Extra",
+        cost: 65,
+        description: "Fantastic effects without a scent",
+        size: '3oz'
     }
+    const ckMintStandard = {
+        name: "Minty Standard",
+        cost: 50,
+        description: "Minty freshness mixed with cool relief",
+        size: '2oz'
+    }
+    const ckMintXL = {
+        name: "Minty Extra",
+        cost: 65,
+        description: "Minty freshness mixed with cool relief",
+        size: '3oz'
+    }
+
+    const [container, setContainer] = useState(null);
 
 
     return (
-        <div className="body">
-            <div className="container-fluid store-header shadowed">
-                <Title className="padding-left small-padding-top-bottom">Products</Title>
+        <div className="body" ref={setContainer}>
+            <div className="container-fluid store-header shadowed" >
+                <Title className="padding-left small-padding-top-bottom" style={{color: '#ffffff'}}>Products</Title>
             </div>
-            <Divider orientation="left" className="divider-lower">Roll Ons</Divider>
-            <Cart  />
+            <Affix target={() => container}>
+                <Cart  />
+            </Affix>
             <div className="container products-container margin-top-bottom">
+                <Divider orientation="left" className="divider-lower">Scent Free</Divider>
                 <Row gutter={30}>
-                    <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                        <Product name={premium.name} cost={premium.cost} description={premium.description} />
+                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                        <Product name={ckStandard.name} cost={ckStandard.cost} description={ckStandard.description} size={ckStandard.size} />
                     </Col>
-                    <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                        <Product name={ultimate.name} cost={ultimate.cost} description={ultimate.description} />
+                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                        <Product name={ckXL.name} cost={ckXL.cost} description={ckXL.description} size={ckXL.size}/>
                     </Col>
-                    <Col xs={24} sm={24} md={8} lg={8} xl={8}>
-                        <Product name={soulWrencher.name} cost={soulWrencher.cost} description={soulWrencher.description} />
+                </Row>
+                <Divider orientation="left" className="divider-lower">Mint Scented</Divider>
+                <Row gutter={30} className="mint">
+                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                        <Product name={ckMintStandard.name} cost={ckMintStandard.cost} description={ckMintStandard.description} size={ckMintStandard.size}/>
+                    </Col>
+                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                        <Product name={ckMintXL.name} cost={ckMintXL.cost} description={ckMintXL.description} size={ckMintXL.size} />
                     </Col>
                 </Row>
             </div>
@@ -129,7 +150,9 @@ const Store = () => {
             <div class="inside">
             <div class="icon"><i class="material-icons"><FaInfoCircle /></i></div>
             <div class="contents">
-                <h5 className="centered">INFO ON PRODUCT</h5>
+                <h2 className="centered">{props.name}</h2>
+                <h3>{props.description}</h3>
+                <h3>Size: {props.size}</h3>
             </div>
             </div>
         </div>

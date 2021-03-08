@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-$primary-color: #04B2d9;
-$secondary-color: #0583F2;
-$tertiary-color: #04c4d9;
 
-$bg-color-1: rgb(255, 255, 255);
+$primary-color: #05C7F2;
+$secondary-color: #262A73;
+$tertiary-color: #2E3F8E;
+$accent-color: #1E2159;
+
+$primary-mint-color: #05C7F2;
+$secondary-mint-color: #0FA644;
+$tertiary-mint-color: #3365A6;
+$accent-mint-color: #03A688;
+
+$bg-color-1: #F2F2F2;
 $bg-color-2: rgb(221, 221, 221);
+
+
 
 *, *:before, *:after {
   box-sizing: border-box;
@@ -19,6 +28,7 @@ html {
   padding: 0;
   box-sizing: border-box;
   letter-spacing: 1.1px;
+  overflow-x: hidden;
 }
 
 .body {
@@ -27,7 +37,6 @@ html {
   background-color: $bg-color-1;
   background-image: linear-gradient(to right, $bg-color-1, $bg-color-2);
   font-family: 'Poppins', sans-serif;;
-  overflow-x: hidden;
 }
 @mixin transition {
   @for $i from 1 through 50 {
@@ -55,7 +64,7 @@ ul {
   padding: 0;
 }
 
-$main: grey;
+$main: $primary-color;
 $text: #ffffff;
 $contrast: darken($main, 10%);
 
@@ -268,7 +277,7 @@ label.hamburger {
 
 $separator-size: 5px;
 $separator-border-style: solid;
-$separator-border-color: black;
+$separator-border-color: $tertiary-color;
 $separator-space-top: 50px;
 $separator-space-bottom: 50px;
 
@@ -477,11 +486,12 @@ $separator-space-bottom: 50px;
 
  .centered {
   text-align: center;
+  justify-content: center;
   align-items: center;
 }
 
 .large-icon {
-  color: rgb(65, 65, 65);
+  color: $secondary-color;
   font-size: 50px;
 }
 
@@ -519,6 +529,9 @@ $separator-space-bottom: 50px;
 .small-padding-top-bottom {
   padding-top: 3%;
   padding-bottom: 3%;
+}
+.margin-top {
+  margin-top: 5%;
 }
 
 

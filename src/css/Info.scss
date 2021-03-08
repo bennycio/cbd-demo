@@ -1,4 +1,16 @@
 
+$primary-color: #05C7F2;
+$secondary-color: #262A73;
+$tertiary-color: #2E3F8E;
+$accent-color: #1E2159;
+
+$primary-mint-color: #05C7F2;
+$secondary-mint-color: #0FA644;
+$tertiary-mint-color: #3365A6;
+$accent-mint-color: #03A688;
+
+$bg-color-1: #F2F2F2;
+$bg-color-2: rgb(221, 221, 221);
 
 @mixin mediaMaxWidth($w) {
   @media (max-width: $w) {

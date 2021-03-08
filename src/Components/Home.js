@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import { NavLink } from 'react-router-dom';
 import {Row, Col, Card, Typography} from 'antd';
 import '../css/Home.scss'
-import {FaFlask, FaDollarSign, FaRunning, FaAllergies} from 'react-icons/fa'
+import {FaFlask, FaDollarSign, FaRunning, FaStar} from 'react-icons/fa'
 
 const {Title, Paragraph} = Typography;
 
@@ -11,9 +11,8 @@ const Home = memo(() => {
 
       return (
           <div className="body">
-            {//style={{backgroundImage: `url(${process.env.PUBLIC_URL + 'images/background.jpeg'})`}}
-            }
-            <section class="hero" style={{backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${process.env.PUBLIC_URL + 'images/background.jpg'})`}}>
+            {/* style={{backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${process.env.PUBLIC_URL + 'images/background.jpg'})`}} */}
+            <section class="hero" >
               <header id="header">
                 <a id="logo" href="#">logo</a>
               </header>
@@ -21,36 +20,113 @@ const Home = memo(() => {
                 <h1 class="hero-title">Find Peace Again With</h1>
                 <h1 class="hero-title">Canna Kool</h1>
               </header>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
               <footer class="hero-footer">
                 <NavLink class="button button-primary" to="/store">Shop Now</NavLink>
                 <NavLink class="button" to="/info">Learn More</NavLink>
               </footer>
             </section>
-          <div className="container-fluid marketing">
+          <div className="marketing">
             <div className="centered margin-top-bottom"><Title level={1}>Introducing Canna Kool. <br />An all natural solution that makes it easy <br />to get the relief that you need.</Title></div>
-            <div className="small-margin">
+            <div className="small-margin container infographics">
               <Row gutter={16} className="margin">
-                <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+                <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                   <i className="large-icon"><FaFlask /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Lab Tested Hemp</Title>
                   <Paragraph>Developed sustainably with 100% natural ingredients and proven refinery techniques to provide a safe and satisfying experience.</Paragraph>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+                <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <i className="large-icon"><FaDollarSign /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Unmatched Value</Title>
                   <Paragraph>Never overpay again for the relief that you deserve. Achieve ultimate relaxation at a bargain with our product.</Paragraph>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+                <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <i className="large-icon"><FaRunning /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Real Results</Title>
                   <Paragraph>Over 100x stronger than the average CBD Roll-on and designed with hard workers in mind, you won't find a more powerful solution to pain and anxiety.</Paragraph>
                 </Col>
-                <Col xs={24} sm={24} md={12} lg={6} xl={6}>
-                <i className="large-icon"><FaAllergies /></i>
-                  <Title level={2} style={{paddingTop: '3%'}}>No Unpleasant Surprises</Title>
-                  <Paragraph>Designed with a scent free and skin safe formula, you will never have to worry about awkward sensations and pungent smells ruining your experiences.</Paragraph>
-                </Col>
               </Row>
+            </div>
+            <div className="container quote-container">
+              <blockquote>
+                <Title level={1}>This is really the best stuff I've ever tried,<br /> and believe me, I am a certified FaceBook CBD connoisseur</Title>
+                <Paragraph class="author"> - James Bond</Paragraph>
+              </blockquote>
+              <h4 className=""><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></h4>
+            </div>
+            <div className="container-fluid call-for-action margin-top raised-box">
+              <div className="container">
+                <Row gutter={16} justify="center">
+                  <Col className="call-text" xs={8} sm={8} md={8} lg={8} xl={8} style={{justifyContent: 'center'}}>
+                    <Title level={3}>Find what's right for you.</Title>
+                    <Title  level={3}>We have choice for those from every walk of life.</Title>
+                    <div className="separator"></div>
+                    <NavLink className="btn btn-primary call" to="/store" style={{ textDecoration: 'none' }}>Discover Now »</NavLink>
+                  </Col>
+                  <Col xs={16} sm={16} md={16} lg={16} xl={16}>
+                    <img className="image-responsive" src="images/hemp.png" alt="Farmer farming hemp" />
+                  </Col>
+                </Row>
+              </div>
             </div>
             <div className="container-fluid home-card-container raised-box">
             <div className="small-margin">
@@ -82,13 +158,7 @@ const Home = memo(() => {
             </Row>
             </div>
             </div>
-            <div className="container quote-container">
-              <blockquote>
-                <Title level={1}>This is really the best stuff I've ever tried,<br /> and believe me, I am a certified FaceBook CBD connoisseur</Title>
-                <Paragraph class="author"> - James Bond</Paragraph>
-              </blockquote>
-            </div>
-            <div className="container-fluid">
+            {/* <div className="container-fluid">
             <hr className="separator separator--line"/>
             <Row className="featurette" gutter={30}>
               <Col span={12}>
@@ -107,7 +177,7 @@ const Home = memo(() => {
                 <h2 className="featurette-heading">Refined for a purpose. <span className="text-muted">For people like you.</span></h2>
               </Col>
             </Row>
-            </div>
+            </div> */}
              <hr className="separator separator--line"/>
           </div>
         </div>
