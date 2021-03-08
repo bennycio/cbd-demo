@@ -14,7 +14,7 @@ const Home = memo(() => {
             {/* style={{backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url(${process.env.PUBLIC_URL + 'images/background.jpg'})`}} */}
             <section class="hero" >
               <header id="header">
-                <a id="logo" href="#">logo</a>
+                <NavLink id="logo" to="/">logo</NavLink>
               </header>
               <header class="hero-header">
                 <h1 class="hero-title">Find Peace Again With</h1>
@@ -90,7 +90,7 @@ const Home = memo(() => {
               <Title level={1}>Introducing Canna Kool. <br />An all natural solution that makes it easy <br />to get the relief that you need.</Title>
             </div>
             <div className="container text-center">
-              <Row gutter={30} justify='center'>
+              <Row gutter={[30, 24]} justify='center'>
                 <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                   <i className="large-icon"><FaFlask /></i>
                   <Title level={2} style={{paddingTop: '3%'}}>Lab Tested Hemp</Title>
@@ -108,23 +108,23 @@ const Home = memo(() => {
                 </Col>
               </Row>
             </div>
-            <div className="container quote-container">
+            <div className="container quote-container square-brackets-quote">
               <blockquote>
                 <Title level={1}>This is really the best stuff I've ever tried,<br /> and believe me, I am a certified FaceBook CBD connoisseur</Title>
                 <Paragraph class="author"> - James Bond</Paragraph>
+                <h4 className="small-padding-top-bottom"><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></h4>
               </blockquote>
-              <h4 className=""><FaStar /><FaStar /><FaStar /><FaStar /><FaStar /></h4>
             </div>
             <div className="container-fluid call-for-action margin-top raised-box">
               <div className="container">
-                <Row gutter={16} justify="center">
-                  <Col className="call-text" xs={8} sm={8} md={8} lg={8} xl={8} style={{justifyContent: 'center'}}>
-                    <Title level={3}>Find what's right for you.</Title>
-                    <Title  level={3}>We have choice for those from every walk of life.</Title>
+                <Row gutter={[24, 24]} >
+                  <Col className="call-text" xs={24} sm={24} md={8} lg={8} xl={8} style={{justifyContent: 'center'}}>
+                    <h1>Find what's right for you.</h1>
+                    <h3 >We have choice for those from every walk of life.</h3>
                     <div className="separator"></div>
                     <NavLink className="btn btn-primary call" to="/store" style={{ textDecoration: 'none' }}>Discover Now »</NavLink>
                   </Col>
-                  <Col xs={16} sm={16} md={16} lg={16} xl={16}>
+                  <Col xs={24} sm={24} md={16} lg={16} xl={16}>
                     <img className="image-responsive" src="images/hemp.png" alt="Farmer farming hemp" />
                   </Col>
                 </Row>
@@ -132,54 +132,35 @@ const Home = memo(() => {
             </div>
             <div className="container-fluid home-card-container raised-box">
             <div className="small-margin">
-            <Row gutter={30}>
+            <Row gutter={[24, 24]}>
               <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <Card className="shadowed home-card">
-                  <img className="img-circle" src="images/product1.jpg" alt="Generic placeholder image" width={140} height={140} />
-                  <h2>Premium</h2>
-                  <p>A powerful oil that will alleviate all pains and anxiety, leaving you feeling at peace with the universe.</p>
+                  <img className="img-circle" src="images/product1.jpg" alt="Scentless CBD Roll-on Product" width={140} height={140} />
+                  <h2 className="top-pad">Scentless</h2>
+                  <p>A powerful roll-on that will alleviate pain, leaving you feeling at peace with the universe.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
                 </Card>
               </Col>
               <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <Card className="shadowed home-card">
-                  <img className="img-circle" src="/images/product2.jpg" alt="Generic placeholder image" width={140} height={140} />
-                  <h2>Ultimate</h2>
-                  <p>Our mid-tier oil, providing an experience that will pull you away from reality but not so far where you can no longer reach over to grab the oil bottle for a second go.</p>
+                  <img className="img-circle" src="/images/product2.jpg" alt="Minty Fresh CBD Roll-on Product" width={140} height={140} />
+                  <h2 className="top-pad">Minty Fresh</h2>
+                  <p>A refreshing experience with the cool scent of minty aroma breathing through your body.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
                 </Card>
               </Col>
               <Col xs={24} sm={24} md={8} lg={8} xl={8}>
                 <Card className="shadowed home-card">
-                  <img className="img-circle " src="images/product3.jpg" alt="Generic placeholder image" width={140} height={140} />
-                  <h2>Soul-Wrencher</h2>
-                  <p>This product will take you to a new dimension and is our most refined option.</p>
+                  <img className="img-circle " src="images/product3.jpg" alt="Extremely Powerful CBD Roll-on Product" width={140} height={140} />
+                  <h2 className="top-pad">Extreme</h2>
+                  <p>A roll-on designed for the hardest workers who need an extraordinary pain relief solution.</p>
                   <p><NavLink className="btn btn-primary learn-more" to="/store" style={{ textDecoration: 'none' }}>View details »</NavLink></p>
                 </Card>
               </Col>
             </Row>
             </div>
             </div>
-            {/* <div className="container-fluid">
-            <hr className="separator separator--line"/>
-            <Row className="featurette" gutter={30}>
-              <Col span={12}>
-                <h2 className="featurette-heading">Try it out. <span className="text-muted">It'll blow your mind.</span></h2>
-              </Col>
-              <Col span={12}>
-                <img className="featurette-image img-responsive center-block shadowed" src="images/cbdscience.jpg" data-src="holder.js/500x500/auto" alt="Generic placeholder image" />
-              </Col>
-            </Row>
-             <hr className="separator separator--line"/>
-            <Row className="featurette">
-              <Col span={12}>
-                <img className="featurette-image img-responsive center-block shadowed" src="images/cbdoil.jpeg" data-src="holder.js/500x500/auto" alt="Generic placeholder image" />
-              </Col>
-              <Col span={12}>
-                <h2 className="featurette-heading">Refined for a purpose. <span className="text-muted">For people like you.</span></h2>
-              </Col>
-            </Row>
-            </div> */}
+
              <hr className="separator separator--line"/>
           </div>
         </div>

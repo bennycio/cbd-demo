@@ -1,7 +1,7 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import '../css/Store.scss'
 import {FaInfoCircle, FaShoppingCart, FaRegPlusSquare, FaRegMinusSquare} from 'react-icons/fa'
-import {Typography, Divider, Row, Col, Avatar, Drawer, Button, Modal, Affix} from 'antd';
+import {Typography, Divider, Row, Col, Drawer, Button, Modal, message, Result} from 'antd';
 import {CartContext} from '../App'
 import {
     SquarePaymentForm,
@@ -48,20 +48,17 @@ const Store = () => {
         size: '3oz'
     }
 
-    const [container, setContainer] = useState(null);
 
 
     return (
-        <div className="body" ref={setContainer}>
+        <div className="body" >
             <div className="container-fluid store-header shadowed" >
                 <Title className="padding-left small-padding-top-bottom" style={{color: '#ffffff'}}>Products</Title>
             </div>
-            <Affix target={() => container}>
-                <Cart  />
-            </Affix>
             <div className="container products-container margin-top-bottom">
+                <Cart  />
                 <Divider orientation="left" className="divider-lower">Scent Free</Divider>
-                <Row gutter={30}>
+                <Row gutter={30} className="standard">
                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                         <Product name={ckStandard.name} cost={ckStandard.cost} description={ckStandard.description} size={ckStandard.size} />
                     </Col>
@@ -93,18 +90,17 @@ const Store = () => {
     var index = clone.findIndex(i => i.name === props.name);
     const count = clone[index].count;
 
-    console.log(props)
     return(
         <div className="add-to-cart">
             <span className="counter solid-icon" onClick={() => {
                 if (count > 0){
                     clone[index].count = count - 1;
-                    setCart(clone)
+                    setCart(clone);
                 }
             }}><FaRegMinusSquare /></span>
             <span className=" counter solid-icon" onClick={() => {
                 clone[index].count = count + 1;
-                setCart(clone)
+                setCart(clone);
             }}><FaRegPlusSquare /></span>
         </div>
     );
@@ -173,6 +169,8 @@ const Store = () => {
 
     const [visible, setVisible] = useState(false);
 
+    const [total, setTotal] = useState(0);
+
     function openDrawer(){
         setVisible(true);
     }
@@ -181,8 +179,16 @@ const Store = () => {
         setVisible(false);
     }
 
+    useEffect(() =>{
+        var t = 0;
+        cart.forEach((item) => {
+            t+=(item.cost * item.count)
+        })
+        setTotal(t);
+    }, [cart]);
+
     const cartItems = []
-    cart.forEach(function(item){
+    cart.forEach((item) =>{
         cartItems.push(
             <div key={item.name}>
                 <p>{item.name}</p>
@@ -196,16 +202,19 @@ const Store = () => {
 
     return (
     <div>
-        <button className="circle-border margin-left" onClick={openDrawer}><Avatar size="large" icon={<FaShoppingCart />} className="solid-icon"/></button>
+        <button className="cart-button" onClick={openDrawer}><i className="icon-large solid-icon"><FaShoppingCart /></i></button>
     <Drawer
-    width={480}
+    width={400}
     title="Cart"
     placement="left"
     closable={true}
     onClose={closeDrawer}
     visible={visible}
     >
-        {cartItems}
+        <div>
+            {cartItems}
+        </div>
+        <h4>Total: ${total}</h4>
         <Checkout />
     </Drawer>
     </div>
@@ -216,17 +225,17 @@ const Store = () => {
 
     const {cart, setCart} = useContext(CartContext);
 
-    const [data, setData] = useState({
-      firstName: "John",
-      lastName: "Doe",
-      email: "johndoe@gmail.com"
-    });
+    const [firstName, setFirstName] = useState("John");
+    const [lastName, setlastName] = useState("Doe");
+    const [email, setEmail] = useState("johndoe@gmail.com");
+    const [zip, setZip] = useState("90101");
+
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isResultVisible, setResultVisible] = useState(false);
 
     const APPLICATION_ID = 'sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA';
     const LOCATION_ID = 'LMGSEFQN3X8R2';
     const URL = process.env.REACT_APP_SQUARE_SERVICE_ENDPOINT;
-    console.log('URL ' + URL);
 
     var total = 0;
 
@@ -234,10 +243,11 @@ const Store = () => {
         total+=(item.cost * item.count);
     }
 
+    const [success, setSuccess] = useState(false);
+
+
     async function checkoutRequest(data) {
-        // Default options are marked with *
-        console.log(JSON.stringify(data));
-        const response = await fetch(URL, {
+        const response = fetch(URL, {
           method: 'POST', 
           mode: 'no-cors',
           headers: {
@@ -245,7 +255,8 @@ const Store = () => {
           },
           body: JSON.stringify(data)
         });
-        return response.json();
+        console.log(response.status);
+        return response.status;
     }
 
 
@@ -256,8 +267,6 @@ const Store = () => {
         console.log(errors)
         return;
       }
-  
-      alert('nonce created: ' + nonce + ', buyerVerificationToken: ' + buyerVerificationToken);
       var data = {
           idempotency_key: uuidv4(),
           amount_money: {
@@ -269,11 +278,18 @@ const Store = () => {
           autocomplete: true,
           location_id: LOCATION_ID, 
       }
-      var response = checkoutRequest(data);
-      console.log(response)
+      var status = checkoutRequest(data);
+      if (status === 200){
+          setSuccess(true);
+      } else{
+          setSuccess(false);
+      }
+      setIsModalVisible(false);
+      setResultVisible(true);
     }
   
     function createPaymentRequest() {
+        
       return {
         requestShippingAddress: false,
         requestBillingInfo: false,
@@ -295,14 +311,15 @@ const Store = () => {
     }
   
     function createVerificationDetails() {
+        
       return {
         amount: total + '00',
         currencyCode: 'USD',
         intent: 'CHARGE',
         billingContact: {
-          familyName: data.lastName,
-          givenName: data.firstName,
-          email: data.email,
+          familyName: lastName,
+          givenName: firstName,
+          email: email,
           country: 'US',
           city: 'London',
           addressLines: ["1235 Emperor's Gate"],
@@ -312,9 +329,9 @@ const Store = () => {
       };
     }
   
-    function postalCode() {
-      const postalCode = '12345'; // your logic here
-      return postalCode;
+    function postalCode(zip) {
+      setZip(zip);
+      return zip;
     }
   
     function focusField() {
@@ -327,10 +344,22 @@ const Store = () => {
 
     const handleOk = () => {
         setIsModalVisible(false);
+        setResultVisible(true);
     };
 
     const handleCancel = () => {
         setIsModalVisible(false);
+    };
+    const showResult = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOkResult = () => {
+        setResultVisible(false);
+    };
+
+    const handleCancelResult = () => {
+        setResultVisible(false);
     };
 
     return (
@@ -366,12 +395,24 @@ const Store = () => {
                     <CreditCardCVVInput />
                 </div>
                 </fieldset>
-        
                 <CreditCardSubmitButton>Pay ${total}</CreditCardSubmitButton>
                 </div>
             </SquarePaymentForm>
+           </Modal>
+            <Modal title="Checkout" visible={isResultVisible} onOk={handleOkResult} onCancel={handleCancelResult} footer={null}>
+                <Result
+                status="success"
+                title="Successfully ordered Canna Kool!"
+                subTitle="Order number: 2017182818828182881 Please check your email for shipping details."
+                extra={[
+                <Button type="primary" onClick={handleOkResult}>
+                    Continue
+                </Button>
+                ]}
+                />
           </Modal>
       </div>
     );
   };
+
   export default Store;

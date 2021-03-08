@@ -14,11 +14,17 @@ $bg-color-2: rgb(221, 221, 221);
 
 
 .store-header {
-  background: $secondary-color;
+  background: $tertiary-color;
 }
 
 .divider-lower {
   padding-top: 2%;
+}
+
+.cart-button {
+  border-radius: 50%;
+  width: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 // .mint {
@@ -130,10 +136,10 @@ $bg-color-2: rgb(221, 221, 221);
     }
   }
   
+
   .inside{
     color: white;
     z-index:9;
-    background: $secondary-color;
     width:140px;
     height:140px;
     position: absolute;
@@ -185,6 +191,12 @@ $bg-color-2: rgb(221, 221, 221);
       }
     }
   }
+}
+.standard .inside {
+  background: $secondary-color;
+}
+.mint .inside {
+  background: $secondary-mint-color;
 }
 
 
@@ -284,13 +296,37 @@ $white: #fff;
     }
   }
 }
-
+.products-container .mint button {
+  color: white;
+  .circle {
+    background: $secondary-mint-color;
+  }
+  .button-text{
+    color:$secondary-mint-color;
+  }
+  &:hover {
+    .circle {
+      width: 100%;
+      .icon {
+        &.arrow {
+        background: $white;
+        transform: translate(1rem, 0);
+        }
+      }
+    }
+    .button-text {
+      color: $white;
+    }
+  }
+}
 
 .solid-icon {
   color: black;
-  background-color: white;
 }
 
+.icon-large {
+  font-size: 200%;
+}
 .grey {
   background-color: gray;
 }
