@@ -1,17 +1,14 @@
-
-
-
-import React, {useState, lazy, Suspense, createContext} from 'react';
-import './css/App.scss';
+import React, { useState, lazy, Suspense, createContext } from "react";
+import "./css/App.scss";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import { spring, AnimatedSwitch } from 'react-router-transition';
+import { spring, AnimatedSwitch } from "react-router-transition";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'antd/dist/antd.css';
+import "antd/dist/antd.css";
 
-const Home = lazy(()=>import('./Components/Home'))
-const Store = lazy(()=>import('./Components/Store'))
-const Info = lazy(()=>import('./Components/Info'))
-const AboutUs = lazy(()=>import('./Components/AboutUs'))
+const Home = lazy(() => import("./Components/Home"));
+const Store = lazy(() => import("./Components/Store"));
+const Info = lazy(() => import("./Components/Info"));
+const AboutUs = lazy(() => import("./Components/AboutUs"));
 
 function mapStyles(styles) {
   return {
@@ -49,56 +46,47 @@ const bounceTransition = {
 
 export const CartContext = createContext({
   cart: [],
-  setCart: () => {}
+  setCart: () => {},
 });
 
-const App = () =>{ 
-
+const App = () => {
   const [cart, setCart] = useState([]);
-  const value = {cart, setCart};
+  const value = { cart, setCart };
 
-  return(
-      <Suspense fallback={Loading}>
+  return (
+    <Suspense fallback={Loading}>
       <BrowserRouter>
-      <div>
-        <Navbar />
-        <AnimatedSwitch
-        atEnter={bounceTransition.atEnter}
-        atLeave={bounceTransition.atLeave}
-        atActive={bounceTransition.atActive}
-        mapStyles={mapStyles}
-        >
-          <Route exact path="/" component={Home} />
-          <CartContext.Provider value={value}>
-            <Route exact path="/store" component={Store}/>
-          </CartContext.Provider>
-          <Route exact path="/info" component={Info} />
-          <Route exact path="/aboutus" component={AboutUs} />
-          <Route render={() => <div>Not Found</div>} />
-        </AnimatedSwitch>
-        <Footer/>
-      </div>
-    </BrowserRouter>
+        <div>
+          <Navbar />
+          <AnimatedSwitch
+            atEnter={bounceTransition.atEnter}
+            atLeave={bounceTransition.atLeave}
+            atActive={bounceTransition.atActive}
+            mapStyles={mapStyles}
+          >
+            <Route exact path="/" component={Home} />
+            <CartContext.Provider value={value}>
+              <Route exact path="/store" component={Store} />
+            </CartContext.Provider>
+            <Route exact path="/info" component={Info} />
+            <Route exact path="/aboutus" component={AboutUs} />
+            <Route render={() => <div>Not Found</div>} />
+          </AnimatedSwitch>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </Suspense>
   );
-}
-
-
-
-
+};
 
 const Navbar = () => {
+  const unselectHamburger = () => {
+    document.getElementById("hamburger").checked = false;
+  };
 
-
-
-  const unselectHamburger = () =>{
-    document.getElementById('hamburger').checked = false;
-  }
-
-    return (
-      
+  return (
     <div className="front">
-      <input id="hamburger" class="hamburger" type="checkbox"/>
+      <input id="hamburger" class="hamburger" type="checkbox" />
       <label class="hamburger" for="hamburger">
         <i />
         <text>
@@ -107,17 +95,61 @@ const Navbar = () => {
         </text>
       </label>
       <section class="drawer-list">
-            <ul>
-              <li><NavLink className="nav-item" to="/" onClick={unselectHamburger}>Home</NavLink></li>
-              <li><NavLink className="nav-item" to="/store" onClick={unselectHamburger}>Store</NavLink></li>
-              <li><NavLink className="nav-item" to="/info" onClick={unselectHamburger}>Info</NavLink></li>
-              <li><NavLink className="nav-item" to="/aboutus" onClick={unselectHamburger}>About Us</NavLink></li>
-              <li><NavLink className="nav-item" to="/contact" onClick={unselectHamburger}>Contact</NavLink></li>
-              <li><NavLink className="nav-item" to="/labresults" onClick={unselectHamburger}>Lab Results</NavLink></li>
-            </ul>
+        <ul>
+          <li>
+            <NavLink className="nav-item" to="/" onClick={unselectHamburger}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/store"
+              onClick={unselectHamburger}
+            >
+              Store
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/info"
+              onClick={unselectHamburger}
+            >
+              Info
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/aboutus"
+              onClick={unselectHamburger}
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/contact"
+              onClick={unselectHamburger}
+            >
+              Contact
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-item"
+              to="/labresults"
+              onClick={unselectHamburger}
+            >
+              Lab Results
+            </NavLink>
+          </li>
+        </ul>
       </section>
     </div>
-    );
+  );
 };
 
 const Loading = () => {
@@ -128,17 +160,11 @@ const Loading = () => {
         <span></span>
       </div>
     </div>
-  )
+  );
 };
 
-
 const Footer = () => {
-    return (
-      <footer>
-    </footer>
-    )
-}
+  return <footer></footer>;
+};
 
 export default App;
-
-
