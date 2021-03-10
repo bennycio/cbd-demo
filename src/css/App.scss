@@ -13,6 +13,10 @@ $bg-color-1: #F2F2F2;
 $bg-color-2: rgb(221, 221, 221);
 
 
+.container {
+  margin-left: 6%;
+  margin-right: 6%;
+}
 
 html {
   height: 100vh;
@@ -518,6 +522,9 @@ $separator-space-bottom: 50px;
   padding-top: 5%;
   padding-bottom: 5%;
 }
+.padding-bottom {
+  padding-bottom: 5%;
+}
 .small-padding-top-bottom {
   padding-top: 3%;
   padding-bottom: 3%;
@@ -525,6 +532,7 @@ $separator-space-bottom: 50px;
 .margin-top {
   margin-top: 5%;
 }
+
 
 
 .raised-box
@@ -541,4 +549,13 @@ $separator-space-bottom: 50px;
 
 .align-right{
   float: right;
+}
+
+.page-footer {
+  align-items: center;
+  text-align: center;
+  justify-self: center;
+  justify-content: center;
+  height: 50vh;
+  background: linear-gradient(0.25turn, $tertiary-color,$secondary-color, $secondary-color);
 }

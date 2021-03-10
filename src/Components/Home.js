@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { NavLink } from "react-router-dom";
-import { Row, Col, Card, Typography } from "antd";
+import { Row, Col, Card, Typography, Skeleton } from "antd";
 import "../css/Home.scss";
 import { FaFlask, FaDollarSign, FaRunning, FaStar } from "react-icons/fa";
+import LazyLoad from "react-lazyload";
 
 const { Title, Paragraph } = Typography;
 
@@ -80,14 +81,14 @@ const Home = memo(() => {
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-        <footer class="hero-footer">
+        <div class="hero-footer">
           <NavLink class="button button-primary" to="/store">
             Shop Now
           </NavLink>
           <NavLink class="button" to="/info">
             Learn More
           </NavLink>
-        </footer>
+        </div>
       </section>
       <div className="marketing">
         <div className="centered margin-top-bottom">
@@ -97,8 +98,8 @@ const Home = memo(() => {
             to get the relief that you need.
           </Title>
         </div>
-        <div className="container text-center">
-          <Row gutter={[30, 24]} justify="center">
+        <div className="container centered">
+          <Row gutter={[30, 24]} justify="center" align="middle">
             <Col xs={24} sm={24} md={8} lg={8} xl={8}>
               <i className="large-icon">
                 <FaFlask />
@@ -146,42 +147,43 @@ const Home = memo(() => {
             </Title>
             <Paragraph class="author"> - James Bond</Paragraph>
             <h4 className="small-padding-top-bottom">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
-              <FaStar />
+             <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
             </h4>
           </blockquote>
         </div>
-        <div className="container-fluid call-for-action margin-top raised-box">
-          <div className="container">
-            <Row gutter={[24, 24]}>
-              <Col
-                className="call-text"
-                xs={24}
-                sm={24}
-                md={8}
-                lg={8}
-                xl={8}
-                style={{ justifyContent: "center" }}
-              >
-                <h1>Find what's right for you.</h1>
-                <h3>We have choice for those from every walk of life.</h3>
-                <div className="separator"></div>
-                <NavLink
-                  className="btn btn-primary call"
-                  to="/store"
-                  style={{ textDecoration: "none" }}
-                >
-                  Discover Now »
-                </NavLink>
-              </Col>
-              <Col xs={24} sm={24} md={16} lg={16} xl={16}>
-                <img src="images/hemp.png" alt="Farmer farming hemp" />
-              </Col>
-            </Row>
+        <LazyLoad placeholder={<Skeleton.Image />}>
+          <div class="image-container">
+            <div class="box">
+              <img src="https://source.unsplash.com/1000x800" alt=""/>
+            </div>
+            <div class="box">
+              <img src="https://source.unsplash.com/1000x802" alt=""/>
+            </div>
+            <div class="box">
+              <img src="https://source.unsplash.com/1000x804" alt=""/>
+            </div>
+            <div class="box">
+              <img src="https://source.unsplash.com/1000x806" alt=""/>
+            </div>
           </div>
+        </LazyLoad>
+        <div className="container quote-container square-brackets-quote padding-bottom">
+          <Row gutter={60} justify="space-between" align="middle">
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <img src="images/hemp.png" alt="Farmer farming hemp" />
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12} push="2">
+              <div className="quote-wrapper">
+                <blockquote class="text">
+                  <p>
+                    The real question is why wouldn't you have a bottle of Canna
+                    Kool in every room in your house.
+                  </p>
+                  <footer>– Billy Bo Bob James</footer>
+                </blockquote>
+              </div>
+            </Col>
+          </Row>
         </div>
         <div className="container-fluid home-card-container">
           <div className="small-margin">
