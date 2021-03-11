@@ -9,6 +9,7 @@ import Home from "./Components/Home";
 import Store from "./Components/Store";
 import AboutUs from "./Components/AboutUs";
 import Info from "./Components/Info";
+import Contact from "./Components/Contact"
 
 export const CartContext = createContext({
   cart: [],
@@ -73,6 +74,7 @@ const App = () => {
             </CartContext.Provider>
             <Route exact path="/info" component={Info} />
             <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/contact" component={Contact} />
           </IconContext.Provider>
         </Switch>
         <Footer />

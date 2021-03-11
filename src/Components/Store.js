@@ -16,7 +16,6 @@ import {
   Modal,
   Result,
   Spin,
-  Select,
   Form,
   Input,
 } from "antd";
@@ -32,10 +31,9 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
-import { useList, useToggle } from "react-use";
+import { useToggle } from "react-use";
 
 const { Title } = Typography;
-const { Option } = Select;
 
 const Store = () => {
   const ckStandard = {
@@ -207,8 +205,8 @@ const Product = (props) => {
           <div class="top"></div>
           <div class="bottom">
             <div class="details">
-              <h5>{props.name}</h5>
-              <h5>${props.cost}</h5>
+              <h3>{props.name}</h3>
+              <h3>${props.cost}</h3>
             </div>
           </div>
         </div>
@@ -220,8 +218,8 @@ const Product = (props) => {
           </div>
           <div class="contents">
             <h2 className="centered">{props.name}</h2>
-            <h3>{props.description}</h3>
-            <h3>Size: {props.size}</h3>
+            <h2>{props.description}</h2>
+            <h2>Size: {props.size}</h2>
           </div>
         </div>
       </div>
