@@ -1,70 +1,80 @@
-import React, { useState, createContext } from "react";
+import React, { createContext } from "react";
 import "./css/App.scss";
-import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import { spring, AnimatedSwitch } from "react-router-transition";
+import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+import { IconContext } from "react-icons";
+import { Row, Col, Form, Input, Button } from "antd";
+import { useList } from "react-use";
 import "antd/dist/antd.css";
 import Home from "./Components/Home";
 import Store from "./Components/Store";
 import AboutUs from "./Components/AboutUs";
 import Info from "./Components/Info";
 
-
-function mapStyles(styles) {
-  return {
-    opacity: styles.opacity,
-    transform: `scale(${styles.scale})`,
-  };
-}
-
-function bounce(val) {
-  return spring(val, {
-    stiffness: 200,
-    damping: 25,
-  });
-}
-
-const bounceTransition = {
-  atEnter: {
-    opacity: 0,
-    scale: 1.1,
-  },
-  atLeave: {
-    opacity: bounce(0),
-    scale: bounce(0.9),
-  },
-  atActive: {
-    opacity: bounce(1),
-    scale: bounce(1),
-  },
-};
-
 export const CartContext = createContext({
   cart: [],
-  setCart: () => {},
+  set: () => {},
+  push: () => {},
+  updateAt: () => {},
+  insertAt: () => {},
+  update: () => {},
+  updateFirst: () => {},
+  upsert: () => {},
+  sort: () => {},
+  filter: () => {},
+  removeAt: () => {},
+  clear: () => {},
+  reset: () => {},
 });
 
 const App = () => {
-  const [cart, setCart] = useState([]);
-  const value = { cart, setCart };
+  const [
+    cart,
+    {
+      set,
+      push,
+      updateAt,
+      insertAt,
+      update,
+      updateFirst,
+      upsert,
+      sort,
+      filter,
+      removeAt,
+      clear,
+      reset,
+    },
+  ] = useList([]);
+
+  const value = {
+    cart,
+    set,
+    push,
+    updateAt,
+    insertAt,
+    update,
+    updateFirst,
+    upsert,
+    sort,
+    filter,
+    removeAt,
+    clear,
+    reset,
+  };
 
   return (
     <BrowserRouter>
       <div>
         <Navbar />
-        <AnimatedSwitch
-          atEnter={bounceTransition.atEnter}
-          atLeave={bounceTransition.atLeave}
-          atActive={bounceTransition.atActive}
-          mapStyles={mapStyles}
-        >
-          <Route exact path="/" component={Home} />
-          <CartContext.Provider value={value}>
-            <Route exact path="/store" component={Store} />
-          </CartContext.Provider>
-          <Route exact path="/info" component={Info} />
-          <Route exact path="/aboutus" component={AboutUs} />
-          <Route render={() => <div>Not Found</div>} />
-        </AnimatedSwitch>
+        <Switch>
+          <IconContext.Provider value={{ className: "icon-context" }}>
+            <Route exact path="/" component={Home} />
+            <CartContext.Provider value={value}>
+              <Route exact path="/store" component={Store} />
+            </CartContext.Provider>
+            <Route exact path="/info" component={Info} />
+            <Route exact path="/aboutus" component={AboutUs} />
+          </IconContext.Provider>
+        </Switch>
         <Footer />
       </div>
     </BrowserRouter>
@@ -156,7 +166,72 @@ const Loading = () => {
 };
 
 const Footer = () => {
-  return <footer></footer>;
+  return (
+    <footer className="page-footer">
+      <div className="container footer-container">
+        <Row gutter={24}>
+          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+            <ul>
+              <li>Home</li>
+              <li>Store</li>
+              <li>Info</li>
+              <li>About Us</li>
+              <li>Contact</li>
+              <li>Lab Results</li>
+            </ul>
+          </Col>
+          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
+            <ul>
+              <li>Privacy</li>
+              <li>Returns</li>
+              <li>Shipping</li>
+              <li>About Us</li>
+            </ul>
+          </Col>
+          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+            <div class="form-container">
+              <h2>Subscribe to Our Newsletter</h2>
+              <Subscribe />
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </footer>
+  );
+};
+
+const Subscribe = () => {
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  return (
+    <Form
+      name="subscribe"
+      initialValues={{ remember: true }}
+      onFinish={onFinish}
+      onFinishFailed={onFinishFailed}
+      requiredMark={"optional"}
+    >
+      <Form.Item
+        name="Email"
+        rules={[
+          { required: true, message: "Input Email to Sign Up for Newsletter" },
+        ]}
+      >
+        <Input size="large" placeholder="cooldude@gmail.com" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
+  );
 };
 
 export default App;

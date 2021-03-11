@@ -2,9 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import "../css/Store.scss";
 import {
   FaInfoCircle,
-  FaShoppingCart,
   FaRegPlusSquare,
   FaRegMinusSquare,
+  FaWindowClose,
 } from "react-icons/fa";
 import {
   Typography,
@@ -16,6 +16,9 @@ import {
   Modal,
   Result,
   Spin,
+  Select,
+  Form,
+  Input,
 } from "antd";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { CartContext } from "../App";
@@ -29,18 +32,20 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
+import { useList, useToggle } from "react-use";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 const Store = () => {
   const ckStandard = {
-    name: "Scentless Standard",
+    name: "Odorless Standard",
     cost: 50,
     description: "Fantastic effects without a scent",
     size: "2oz",
   };
   const ckXL = {
-    name: "Scentless Extra",
+    name: "Odorless Extra",
     cost: 65,
     description: "Fantastic effects without a scent",
     size: "3oz",
@@ -68,7 +73,7 @@ const Store = () => {
           Products
         </Title>
       </div>
-      <div className="container products-container margin-top-bottom">
+      <div className="container products-container margin-top padding-bottom">
         <Cart />
         <Divider orientation="left" className="divider-lower">
           Scent Free
@@ -118,20 +123,33 @@ const Store = () => {
 };
 
 const Counter = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const {
+    cart,
+    set,
+    push,
+    updateAt,
+    insertAt,
+    update,
+    updateFirst,
+    upsert,
+    sort,
+    filter,
+    removeAt,
+    clear,
+    reset,
+  } = useContext(CartContext);
 
-  const clone = JSON.parse(JSON.stringify(cart));
-  var index = clone.findIndex((i) => i.name === props.name);
-  const count = clone[index].count;
+  var index = cart.findIndex((i) => i.name === props.name);
+  const clone = cart[index];
 
   return (
     <div className="add-to-cart">
       <span
         className="counter solid-icon"
         onClick={() => {
-          if (count > 0) {
-            clone[index].count = count - 1;
-            setCart(clone);
+          if (clone.count > 1) {
+            clone.count = clone.count - 1;
+            updateAt(index, clone);
           }
         }}
       >
@@ -140,8 +158,10 @@ const Counter = (props) => {
       <span
         className=" counter solid-icon"
         onClick={() => {
-          clone[index].count = count + 1;
-          setCart(clone);
+          if (clone.count < 100) {
+            clone.count = clone.count + 1;
+            updateAt(index, clone);
+          }
         }}
       >
         <FaRegPlusSquare />
@@ -151,27 +171,33 @@ const Counter = (props) => {
 };
 
 const Product = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const {
+    cart,
+    set,
+    push,
+    updateAt,
+    insertAt,
+    update,
+    updateFirst,
+    upsert,
+    sort,
+    filter,
+    removeAt,
+    clear,
+    reset,
+  } = useContext(CartContext);
 
-  const [added, setAdded] = useState(
-    cart.includes({ name: props.name, cost: props.cost })
-  );
-
+  function changeAddedTxt() {
+    document.getElementById(props.name).innerHTML = "Added to Cart";
+    setTimeout(() => {
+      document.getElementById(props.name).innerHTML = "Add to Cart";
+    }, 3000);
+  }
   function changeAdded() {
-    const clone = JSON.parse(JSON.stringify(cart));
-    if (added === false) {
-      clone.push({ name: props.name, cost: props.cost, count: 1 });
-      setCart(clone);
-      setAdded(true);
-    } else if (added === true) {
-      var index = clone.findIndex((i) => i.name === props.name);
-      clone.splice(index, 1);
-      setCart(clone);
-      setAdded(false);
+    if (!cart.includes({ name: props.name, cost: props.cost })) {
+      push({ name: props.name, cost: props.cost, count: 1 });
+      changeAddedTxt();
     }
-    document.getElementById(props.name).innerHTML = added
-      ? "Added to Cart"
-      : "Add to Cart";
   }
 
   return (
@@ -205,7 +231,7 @@ const Product = (props) => {
             <span class="icon arrow"></span>
           </span>
           <span id={props.name} class="button-text">
-            {added ? "Added to Cart" : "Add to Cart"}
+            Add to Cart
           </span>
         </button>
       </div>
@@ -214,7 +240,21 @@ const Product = (props) => {
 };
 
 const Cart = (props) => {
-  const { cart, setCart } = useContext(CartContext);
+  const {
+    cart,
+    set,
+    push,
+    updateAt,
+    insertAt,
+    update,
+    updateFirst,
+    upsert,
+    sort,
+    filter,
+    removeAt,
+    clear,
+    reset,
+  } = useContext(CartContext);
 
   const [visible, setVisible] = useState(false);
 
@@ -240,6 +280,14 @@ const Cart = (props) => {
   cart.forEach((item) => {
     cartItems.push(
       <div key={item.name}>
+        <FaWindowClose
+          size={"1.5em"}
+          style={{ float: "right", cursor: "pointer" }}
+          onClick={() => {
+            var index = cart.findIndex((i) => i.name === props.name);
+            removeAt(index);
+          }}
+        />
         <p>{item.name}</p>
         <p>Cost: ${item.cost}</p>
         <p>Count: {item.count}</p>
@@ -258,7 +306,13 @@ const Cart = (props) => {
         icon={<ShoppingCartOutlined />}
         onClick={openDrawer}
         className="cart-button"
-        style={{ color: "black", textAlign: "center" }}
+        style={{
+          color: "black",
+          textAlign: "center",
+          position: "sticky",
+          top: "5%",
+          zIndex: "1000",
+        }}
       />
       <Drawer
         width={400}
@@ -277,17 +331,19 @@ const Cart = (props) => {
 };
 
 const Checkout = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   const [firstName, setFirstName] = useState("John");
   const [lastName, setlastName] = useState("Doe");
   const [email, setEmail] = useState("johndoe@gmail.com");
-  const [zip, setZip] = useState("90101");
+  const [billingZip, setBillingZip] = useState("90101");
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isResultVisible, setResultVisible] = useState(false);
+  const [isShippingFilled, toggleShippingFilled] = useToggle(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState([])
 
   const APPLICATION_ID = "sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA";
   const LOCATION_ID = "LMGSEFQN3X8R2";
@@ -320,6 +376,7 @@ const Checkout = () => {
   ) {
     if (errors) {
       console.log(errors);
+      setErrors(errors);
       return;
     }
     var data = {
@@ -384,9 +441,8 @@ const Checkout = () => {
     };
   }
 
-  function postalCode(zip) {
-    setZip(zip);
-    return zip;
+  function postalCode() {
+    return billingZip;
   }
 
   function focusField() {
@@ -394,7 +450,9 @@ const Checkout = () => {
   }
 
   const showModal = () => {
-    setIsModalVisible(true);
+    if (cart && cart.length) {
+      setIsModalVisible(true);
+    }
   };
 
   const handleOk = () => {
@@ -414,11 +472,160 @@ const Checkout = () => {
     setResultVisible(false);
   };
 
+  const onFinish = (values) => {
+    toggleShippingFilled(true);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const ShippingDetailsForm = () => {
+    return (
+      <Form
+        name="basic"
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+      >
+        <Form.Item
+          label="First Name"
+          name="First Name"
+          rules={[
+            {
+              required: true,
+              message: "First Name Required",
+            },
+          ]}
+        >
+          <Input placeholder="Bob" />
+        </Form.Item>
+        <Form.Item
+          label="Last Name"
+          name="Last Name"
+          rules={[
+            {
+              required: true,
+              message: "Last Name Required",
+            },
+          ]}
+        >
+          <Input placeholder="Goldberg" />
+        </Form.Item>
+        <Form.Item
+          label="Email"
+          name="Email"
+          rules={[
+            {
+              required: true,
+              message: "Email Required",
+            },
+          ]}
+        >
+          <Input placeholder="cooldude@gmail.com" />
+        </Form.Item>
+        <Form.Item
+          label="Address Line 1"
+          name="Address Line 1"
+          rules={[
+            {
+              required: true,
+              message: "Address Required",
+            },
+          ]}
+        >
+          <Input placeholder="12345 Happy St." />
+        </Form.Item>
+        <Form.Item
+          label="Address Line 2"
+          name="Address Line 2"
+          rules={[
+            {
+              required: false,
+            },
+          ]}
+        >
+          <Input placeholder="Apt 2" />
+        </Form.Item>
+        <Form.Item
+          label="City"
+          name="City"
+          rules={[
+            {
+              required: true,
+              message: "City required",
+            },
+          ]}
+        >
+          <Input placeholder="Los Angeles" />
+        </Form.Item>
+        <Form.Item
+          label="Zip"
+          name="Zip"
+          rules={[
+            {
+              required: true,
+              message: "Zip required",
+            },
+          ]}
+        >
+          <Input placeholder="90101" />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    );
+  };
+  const CheckoutForm = () => {
+    return (
+      <SquarePaymentForm
+        sandbox={true}
+        applicationId={APPLICATION_ID}
+        locationId={LOCATION_ID}
+        cardNonceResponseReceived={cardNonceResponseReceived}
+        createPaymentRequest={createPaymentRequest}
+        createVerificationDetails={createVerificationDetails}
+        postalCode={postalCode}
+        focusField={focusField}
+      >
+        <div
+          style={{
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <fieldset className="sq-fieldset">
+            <CreditCardNumberInput />
+
+            <div className="sq-form-third">
+              <CreditCardExpirationDateInput />
+            </div>
+
+            <div className="sq-form-third">
+              <CreditCardPostalCodeInput />
+            </div>
+
+            <div className="sq-form-third">
+              <CreditCardCVVInput />
+            </div>
+          </fieldset>
+          <CreditCardSubmitButton id="checkout-button">
+            Pay ${total}
+          </CreditCardSubmitButton>
+        </div>
+      </SquarePaymentForm>
+    );
+  };
+
   return (
     <>
       <Button type="primary" className="grey" onClick={showModal}>
         Checkout
       </Button>
+
       <Modal
         title="Checkout"
         visible={isModalVisible}
@@ -427,43 +634,7 @@ const Checkout = () => {
         footer={null}
       >
         <Spin spinning={loading}>
-          <SquarePaymentForm
-            sandbox={true}
-            applicationId={APPLICATION_ID}
-            locationId={LOCATION_ID}
-            cardNonceResponseReceived={cardNonceResponseReceived}
-            createPaymentRequest={createPaymentRequest}
-            createVerificationDetails={createVerificationDetails}
-            postalCode={postalCode}
-            focusField={focusField}
-          >
-            <div
-              style={{
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <fieldset className="sq-fieldset">
-                <CreditCardNumberInput />
-
-                <div className="sq-form-third">
-                  <CreditCardExpirationDateInput />
-                </div>
-
-                <div className="sq-form-third">
-                  <CreditCardPostalCodeInput />
-                </div>
-
-                <div className="sq-form-third">
-                  <CreditCardCVVInput />
-                </div>
-                <div className="billing-info">{/*TODO*/}</div>
-              </fieldset>
-              <CreditCardSubmitButton id="checkout-button">
-                Pay ${total}
-              </CreditCardSubmitButton>
-            </div>
-          </SquarePaymentForm>
+          {isShippingFilled ? <CheckoutForm /> : <ShippingDetailsForm />}
         </Spin>
       </Modal>
       <Modal
@@ -483,7 +654,7 @@ const Checkout = () => {
           subTitle={
             success
               ? "Please check your email for shipping details and order confirmation"
-              : "Please check that you entered your information correctly. If error persists, contact site administrators."
+              : "Please check that you entered your information correctly. If error persists, contact site administrators. "
           }
           extra={[
             <Button type="primary" onClick={handleOkResult}>

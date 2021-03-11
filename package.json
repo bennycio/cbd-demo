@@ -21,7 +21,7 @@
     "react-spring": "^8.0.27",
     "react-square-payment-form": "^0.7.2",
     "react-transition-group": "^4.4.1",
-    "shards-react": "^1.0.3",
+    "react-use": "^17.2.0",
     "square": "^9.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.0"

@@ -147,23 +147,27 @@ const Home = memo(() => {
             </Title>
             <Paragraph class="author"> - James Bond</Paragraph>
             <h4 className="small-padding-top-bottom">
-             <FaStar /><FaStar /><FaStar /><FaStar /><FaStar />
+              <FaStar size={"2em"} />
+              <FaStar size={"2em"} />
+              <FaStar size={"2em"} />
+              <FaStar size={"2em"} />
+              <FaStar size={"2em"} />
             </h4>
           </blockquote>
         </div>
         <LazyLoad placeholder={<Skeleton.Image />}>
           <div class="image-container">
             <div class="box">
-              <img src="https://source.unsplash.com/1000x800" alt=""/>
+              <img src="https://source.unsplash.com/1000x800" alt="" />
             </div>
             <div class="box">
-              <img src="https://source.unsplash.com/1000x802" alt=""/>
+              <img src="https://source.unsplash.com/1000x802" alt="" />
             </div>
             <div class="box">
-              <img src="https://source.unsplash.com/1000x804" alt=""/>
+              <img src="https://source.unsplash.com/1000x804" alt="" />
             </div>
             <div class="box">
-              <img src="https://source.unsplash.com/1000x806" alt=""/>
+              <img src="https://source.unsplash.com/1000x806" alt="" />
             </div>
           </div>
         </LazyLoad>
@@ -266,8 +270,6 @@ const Home = memo(() => {
             </Row>
           </div>
         </div>
-
-        <hr className="separator separator--line" />
       </div>
     </div>
   );
