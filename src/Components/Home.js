@@ -143,7 +143,8 @@ const Home = memo(() => {
           <blockquote>
             <Title level={1}>
               This is really the best stuff I've ever tried,
-              <br /> and believe me, I am a certified FaceBook CBD connoisseur
+              <br /> and believe me, I am a certified
+              <br /> FaceBook CBD connoisseur
             </Title>
             <Paragraph class="author"> - James Bond</Paragraph>
             <h4 className="small-padding-top-bottom">
@@ -155,7 +156,7 @@ const Home = memo(() => {
             </h4>
           </blockquote>
         </div>
-        <LazyLoad placeholder={<Skeleton.Image />}>
+        <LazyLoad placeholder={<Skeleton />}>
           <div class="image-container">
             <div class="box">
               <img src="https://source.unsplash.com/1000x800" alt="" />
@@ -173,10 +174,10 @@ const Home = memo(() => {
         </LazyLoad>
         <div className="container quote-container square-brackets-quote padding-bottom">
           <Row gutter={60} justify="space-between" align="middle">
-            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
               <img src="images/hemp.png" alt="Farmer farming hemp" />
             </Col>
-            <Col xs={24} sm={24} md={12} lg={12} xl={12} push="2">
+            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
               <div className="quote-wrapper">
                 <blockquote class="text">
                   <p>

@@ -33,6 +33,7 @@ html {
   background-color: $bg-color-1;
   background-image: linear-gradient(to right, $bg-color-1, $bg-color-2);
 }
+
 @mixin transition {
   @for $i from 1 through 50 {
     &:nth-child(#{$i}) {
