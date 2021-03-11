@@ -1,70 +1,87 @@
-import React, {memo} from 'react';
-import '../css/Info.scss'
+import React, { memo } from "react";
+import "../css/Info.scss";
+import { Typography } from "antd";
 
+const { Title } = Typography;
 
-const Info =  memo(() => {
-
-
-        return (
-          <div class="slider-container">
-          <div class="slider-control left inactive"></div>
-          <div class="slider-control right"></div>
-          <ul class="slider-pagi"></ul>
-          <div class="slider">
-            <div class="slide slide-0 active">
-              <div class="slide__bg"></div>
-              <div class="slide__content">
-                <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
-                  <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
-                </svg>
-                <div class="slide__text">
-                  <h2 class="slide__text-heading">Project name 1</h2>
-                  <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-                  <a class="slide__text-link">Project link</a>
-                </div>
-              </div>
+const Info = () => {
+  return (
+    <div className="body">
+      <div className="container-fluid info-header shadowed">
+        <Title
+          className="padding-left small-padding-top-bottom"
+          style={{ color: "#ffffff" }}
+        >
+          Info
+        </Title>
+      </div>
+      <div className="hotspot-container">
+        <div className="lg-container">
+          <img className="lg-image" src="images/hotspot.jpg" />
+          <div
+            style={{ top: "20%", left: "19.9%" }}
+            className="lg-hotspot lg-hotspot--top-left"
+          >
+            <div className="lg-hotspot__button" onClick={selectHotspot}/>
+            <div className="lg-hotspot__label">
+              <h4>Premium Roll</h4>
+              <p>
+                You won't stop rolling
+              </p>
             </div>
-            <div class="slide slide-1 ">
-              <div class="slide__bg"></div>
-              <div class="slide__content">
-                <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
-                  <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
-                </svg>
-                <div class="slide__text">
-                  <h2 class="slide__text-heading">Project name 2</h2>
-                  <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-                  <a class="slide__text-link">Project link</a>
-                </div>
-              </div>
+          </div>
+          <div
+            style={{ top: "25%", left: "88%" }}
+            className="lg-hotspot lg-hotspot--top-right"
+          >
+            <div className="lg-hotspot__button" onClick={selectHotspot}/>
+            <div className="lg-hotspot__label">
+              <h4>Clean</h4>
+              <p>
+                Simple to use
+              </p>
             </div>
-            <div class="slide slide-2">
-              <div class="slide__bg"></div>
-              <div class="slide__content">
-                <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
-                  <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
-                </svg>
-                <div class="slide__text">
-                  <h2 class="slide__text-heading">Project name 3</h2>
-                  <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-                  <a class="slide__text-link">Project link</a>
-                </div>
-              </div>
+          </div>
+          <div
+            style={{ top: "15.5%", left: "66%" }}
+            className="lg-hotspot lg-hotspot--top-right"
+          >
+            <div className="lg-hotspot__button" onClick={selectHotspot}/>
+            <div className="lg-hotspot__label">
+              <h4>Cool</h4>
+              <p>It's in the name</p>
             </div>
-            <div class="slide slide-3">
-              <div class="slide__bg"></div>
-              <div class="slide__content">
-                <svg class="slide__overlay" viewBox="0 0 720 405" preserveAspectRatio="xMaxYMax slice">
-                  <path class="slide__overlay-path" d="M0,0 150,0 500,405 0,405" />
-                </svg>
-                <div class="slide__text">
-                  <h2 class="slide__text-heading">Project name 4</h2>
-                  <p class="slide__text-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio veniam minus illo debitis nihil animi facere, doloremque voluptate tempore quia.</p>
-                  <a class="slide__text-link">Project link</a>
-                </div>
-              </div>
+          </div>
+          <div
+            style={{ top: "62%", left: "15%" }}
+            className="lg-hotspot lg-hotspot--bottom-left"
+          >
+            <div className="lg-hotspot__button" onClick={selectHotspot}/>
+            <div className="lg-hotspot__label">
+              <h4>Happy</h4>
+              <p>Will make you happy!</p>
             </div>
           </div>
         </div>
-        );
-});
+      </div>
+    </div>
+  );
+}
+
+const selectHotspot = (e) => {
+  const clickedHotspot = e.target.parentElement;
+  const container = clickedHotspot.parentElement;
+
+  // only include hotspots within same image to allow one open hotspot per image; change "container" to "document" to allow only one open hotspot for entire page:
+  const hotspots = container.querySelectorAll(".lg-hotspot");
+  hotspots.forEach((hotspot) => {
+    if (hotspot === clickedHotspot) {
+      hotspot.classList.toggle("lg-hotspot--selected");
+    } else {
+      hotspot.classList.remove("lg-hotspot--selected");
+    }
+  });
+};
+
+
 export default Info;

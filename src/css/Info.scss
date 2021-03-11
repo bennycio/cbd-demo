@@ -9,305 +9,153 @@ $secondary-mint-color: #0FA644;
 $tertiary-mint-color: #3365A6;
 $accent-mint-color: #03A688;
 
+$buttonRadius: 24px;
+$labelPaddingX: $buttonRadius * 1;
+$labelBorderRadius: 2px;
+$labelFade: 0.1s;
+$colorButton: $primary-color;
+$colorButtonHover: $secondary-color;
+$colorText: #333;
+$colorHeadingBackground: #555;
+
 $bg-color-1: #F2F2F2;
 $bg-color-2: rgb(221, 221, 221);
 
-@mixin mediaMaxWidth($w) {
-  @media (max-width: $w) {
-    @content;
-  }
-}
-svg {
-  display: block;
-  overflow: visible;
-}
-.slider-container {
-  position: relative;
-  height: 100%;
-  user-select: none;
-  cursor: all-scroll;
-}
-.slider-control {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  width: 12%;
-  height: 100%;
-  transition: opacity 0.3s;
-  will-change: opacity;
-  opacity: 0;
-
-  &.inactive:hover {
-    cursor: auto;
-  }
-
-  &:not(.inactive):hover {
-    opacity: 1;
-    cursor: pointer;
-  }
-
-  &.left {
-    left: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 100%);
-  }
-  &.right {
-    right: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.18) 100%);
-  }
+.info-header {
+  background: $tertiary-color;
 }
 
-.slider-pagi {
-  position: absolute;
-  z-index: 3;
-  left: 50%;
-  bottom: 2rem;
-  transform: translateX(-50%);
-  font-size: 0;
-  list-style-type: none;
-  
-  &__elem {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    width: 2rem;
-    height: 2rem;
-    margin: 0 0.5rem;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    cursor: pointer;
-    
-    &:before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 1.2rem;
-      height: 1.2rem;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.3s;
-      transform: translate(-50%, -50%) scale(0);
-    }
-    
-    &.active:before,
-    &:hover:before {
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-}
-.slider {
-  z-index: 1;
-  position: relative;
-  height: 100%;
 
-  &.animating {
-    transition: transform 0.5s;
-    will-change: transform;
-
-    .slide__bg {
-      transition: transform 0.5s;
-      will-change: transform;
-    }
-  }
-}
-.slide {
-  position: absolute;
-  top: 0;
+.hotspot-container {
   width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.lg-container {
+  position: relative;
+}
+
+.lg-image {
+  display: block;
   height: 100%;
-  overflow: hidden;
+  width: 100%;
+  object-fit: scale-down;
+}
 
-  &.active {
-
-    .slide__overlay,
-    .slide__text{
+.lg-hotspot {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  &:hover,
+  &:active {
+    .lg-hotspot__button {
+      border-color: $colorButtonHover;
+      &:after {
+        background-color: $colorButtonHover;
+      }
+    }
+  }
+  &--selected {
+    z-index: 999;
+    .lg-hotspot__label {
       opacity: 1;
-      transform: translateX(0);
     }
   }
-
-  &__bg {
+  &__button {
+    height: $buttonRadius * 2;
+    width: $buttonRadius * 2;
+    padding: 0px;
+    border-radius: 100%;
+    border: 1px solid $colorButton;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    animation: button-pulse 7s ease-in-out infinite;
+    &:after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      content: "";
+      display: block;
+      height: $buttonRadius * 0.7;
+      width: $buttonRadius * 0.7;
+      border-radius: 100%;
+      border: 3px solid white;
+      background-color: $colorButton;
+      transition: border-color 1s linear;
+    }
+  }
+  &__label {
     position: absolute;
-    top: 0;
-    left: -50%;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    will-change: transform;
-  }
-  &:nth-child(1) {
-    left: 0;
-
-    .slide__bg {
-      left: 0;
-      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/3d-slider-3.jpg');
-    }
-
-    .slide__overlay-path {
-      fill: rgb(233, 156, 126);
-    }
-
-    @include mediaMaxWidth(991px) {
-      .slide__text {
-        background-color: rgba(233, 156, 126, 0.8);
-      } 
-    }
-  }
-  &:nth-child(2) {
-    left: 100%;
-
-    .slide__bg {
-      left: -50%;
-      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/3d-slider-2.jpg');
-    }
-
-    .slide__overlay-path {
-      fill: rgb(225, 204, 174);
-    }
-
-    @include mediaMaxWidth(991px) {
-      .slide__text {
-        background-color: rgba(225, 204, 174, 0.8);
-      } 
-    }
-  }
-  &:nth-child(3) {
-    left: 200%;
-
-    .slide__bg {
-      left: -100%;
-      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/3d-slider-1.jpg');
-    }
-
-    .slide__overlay-path {
-      fill: rgb(173, 197, 205);
-    }
-
-    @include mediaMaxWidth(991px) {
-      .slide__text {
-        background-color: rgba(173, 197, 205, 0.8);
-      } 
-    }
-  }
-  &:nth-child(4) {
-    left: 300%;
-
-    .slide__bg {
-      left: -150%;
-      background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/3d-slider-4.jpg');
-    }
-
-    .slide__overlay-path {
-      fill: rgb(203, 198, 195);
-    }
-
-    @include mediaMaxWidth(991px) {
-      .slide__text {
-        background-color: rgba(203, 198, 195, 0.8);
-      } 
-    }
-  }
-
-  &__content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  &__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 100%;
-    min-height: 810px;
-    transition: transform 0.5s 0.5s, opacity 0.2s 0.5s;
-    will-change: transform, opacity;
-    transform: translate3d(-20%, 0, 0);
+    padding: 0 0 1.1em 0;
+    width: 16em;
+    max-width: 50vw;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: "Open Sans", sans-serif;
+    font-size: 14.5px;
+    line-height: 1.45em;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: $labelBorderRadius;
+    user-select: none;
     opacity: 0;
-
-    @include mediaMaxWidth(991px) {
-      display: none;
+    transition: all $labelFade linear;
+    h4 {
+      margin: 0;
+      padding: 0.65em $labelPaddingX;
+      background-color: $colorHeadingBackground;
+      font-size: 1.1em;
+      font-weight: normal;
+      letter-spacing: 0.02em;
+      color: white;
+      border-radius: $labelBorderRadius $labelBorderRadius 0 0;
     }
-
-    path {
-      opacity: 0.8;
+    p {
+      margin: 0;
+      padding: 1.1em $labelPaddingX 0 $labelPaddingX;
+      color: $colorText;
     }
   }
+}
 
-  &__text {
-    position: absolute;
-    width: 25%;
-    bottom: 15%;
-    left: 12%;
-    color: #fff;
-    transition: transform 0.5s 0.8s, opacity 0.5s 0.8s;
-    will-change: transform, opacity;
-    transform: translateY(-50%);
-    opacity: 0;
+.lg-hotspot--top-left .lg-hotspot__label {
+  top: $buttonRadius;
+  left: $buttonRadius;
+}
 
-    @include mediaMaxWidth(991px) {
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 20rem;
-      text-align: center;
-      transform: translateY(50%);
-      transition: transform 0.5s 0.5s, opacity 0.5s 0.5s;
-      padding: 0 1rem;
-    }
+.lg-hotspot--top-right .lg-hotspot__label {
+  top: $buttonRadius;
+  right: $buttonRadius;
+}
 
-    &-heading {
-      font-size: 5rem;
-      margin-bottom: 2rem;
-      
-      @include mediaMaxWidth(991px) {
-        line-height: 20rem;
-        font-size: 3.5rem;
-      }
-    }
+.lg-hotspot--bottom-right .lg-hotspot__label {
+  right: $buttonRadius;
+  bottom: $buttonRadius;
+}
 
-    &-desc {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+.lg-hotspot--bottom-left .lg-hotspot__label {
+  bottom: $buttonRadius;
+  left: $buttonRadius;
+}
 
-      @include mediaMaxWidth(991px) {
-        display: none;
-      }
-    }
-
-    &-link {
-      z-index: 5;
-      display: inline-block;
-      position: relative;
-      padding: 0.5rem;
-      cursor: pointer;
-      font-size: 2.3rem;
-      perspective: 1000px;
-      
-      @include mediaMaxWidth(991px) {
-        display: none;
-      }
-
-      &:before {
-        z-index: -1;
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        transform-origin: 50% 100%;
-        transform: rotateX(-85deg);
-        transition: transform 0.3s;
-        will-change: transform;
-      }
-
-      &:hover:before {
-        transform: rotateX(0);
-      }
-    }
+@keyframes button-pulse {
+  0% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(1.15, 1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1, 1);
+    opacity: 1;
   }
 }
