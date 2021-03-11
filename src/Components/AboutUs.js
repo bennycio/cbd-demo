@@ -19,7 +19,7 @@ const AboutUs = () => {
           className="padding-left small-padding-top-bottom"
           style={{ color: "#ffffff" }}
         >
-          Products
+          About Us
         </Title>
       </div>
       <div className="container">

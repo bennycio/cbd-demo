@@ -202,7 +202,7 @@ const Home = memo(() => {
                     width={140}
                     height={140}
                   />
-                  <h2 className="top-pad">Scentless</h2>
+                  <h2 className="top-pad">Odorless</h2>
                   <p>
                     A powerful roll-on that will alleviate pain, leaving you
                     feeling at peace with the universe.
