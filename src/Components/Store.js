@@ -77,7 +77,7 @@ const Store = () => {
         <Divider orientation="left" className="divider-lower">
           Scent Free
         </Divider>
-        <Row gutter={30} className="standard">
+        <Row className="standard">
           <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <Product
               name={ckStandard.name}
@@ -98,7 +98,7 @@ const Store = () => {
         <Divider orientation="left" className="divider-lower">
           Mint Scented
         </Divider>
-        <Row gutter={30} className="mint">
+        <Row className="mint">
           <Col xs={24} sm={24} md={12} lg={12} xl={12}>
             <Product
               name={ckMintStandard.name}
@@ -629,6 +629,7 @@ const Checkout = () => {
             }}
           />
         </Form.Item>
+        <Divider orientation="left">Billing Details</Divider>
         <Form.Item
           label="First Name"
           name="Billing First Name"

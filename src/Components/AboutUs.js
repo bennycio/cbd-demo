@@ -118,9 +118,9 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
-        <hr className="separator separator--dots"/>
+        <hr className="separator separator--dots" />
         <Title className="centered">Get to Know Us</Title>
-        <Row gutter={30} align="middle">
+        <Row align="middle">
           <Col xs={24} sm={24} md={12} lg={12} xl={12} push="2">
             <div className="profile-card-wrapper">
               <div className="profile-card">
@@ -180,7 +180,7 @@ const AboutUs = () => {
             </Paragraph>
           </Col>
         </Row>
-        <Row gutter={30} align="middle">
+        <Row align="middle">
           <Col xs={24} sm={24} md={12} lg={12} xl={12} push="2">
             <div className="profile-card-wrapper">
               <div className="profile-card">
