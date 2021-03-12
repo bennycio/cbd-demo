@@ -31,7 +31,8 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
-import { useToggle } from "react-use";
+import { useList } from "react-use";
+import Checkbox from "antd/lib/checkbox/Checkbox";
 
 const { Title } = Typography;
 
@@ -192,7 +193,8 @@ const Product = (props) => {
     }, 3000);
   }
   function changeAdded() {
-    if (!cart.includes({ name: props.name, cost: props.cost })) {
+    var index = cart.findIndex((i) => i.name === props.name);
+    if (index === -1) {
       push({ name: props.name, cost: props.cost, count: 1 });
       changeAddedTxt();
     }
@@ -329,19 +331,21 @@ const Cart = (props) => {
 };
 
 const Checkout = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, clear } = useContext(CartContext);
 
-  const [firstName, setFirstName] = useState("John");
-  const [lastName, setlastName] = useState("Doe");
-  const [email, setEmail] = useState("johndoe@gmail.com");
-  const [billingZip, setBillingZip] = useState("90101");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [shippingDetails, setShippingDetails] = useState({});
+  const [billingDetails, setBillingDetails] = useState({});
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isResultVisible, setResultVisible] = useState(false);
-  const [isShippingFilled, toggleShippingFilled] = useToggle(false);
+  const [isShippingAndBillingFilled, setShippingAndBillingFilled] = useState(
+    false
+  );
+
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState([])
+  const [errors, setErrors] = useState([]);
 
   const APPLICATION_ID = "sandbox-sq0idb-zpwIkYe7ALhGiYVqJgT8aA";
   const LOCATION_ID = "LMGSEFQN3X8R2";
@@ -383,6 +387,8 @@ const Checkout = () => {
         amount: total * 100,
         currency: "USD",
       },
+      billing_address: billingDetails,
+      shipping_address: shippingDetails,
       source_id: nonce,
       verification_token: buyerVerificationToken,
       autocomplete: true,
@@ -401,12 +407,12 @@ const Checkout = () => {
   function createPaymentRequest() {
     setLoading(true);
     return {
-      requestShippingAddress: false,
-      requestBillingInfo: false,
+      requestShippingAddress: true,
+      requestBillingInfo: true,
       currencyCode: "USD",
       countryCode: "US",
       total: {
-        label: "cbd-demo",
+        label: "Canna-Kool",
         amount: total + "00",
         pending: false,
       },
@@ -427,24 +433,29 @@ const Checkout = () => {
       currencyCode: "USD",
       intent: "CHARGE",
       billingContact: {
-        familyName: lastName,
-        givenName: firstName,
+        familyName: billingDetails.last_name,
+        givenName: billingDetails.first_name,
         email: email,
         country: "US",
-        city: "London",
-        addressLines: ["1235 Emperor's Gate"],
-        postalCode: "SW7 4JA",
-        phone: "020 7946 0532",
+        city: billingDetails.locality,
+        addressLines: [billingDetails.address_line_1],
+        postalCode: billingDetails.postal_code,
       },
     };
   }
 
   function postalCode() {
-    return billingZip;
+    return billingDetails.postal_code;
   }
 
   function focusField() {
     return "cardNumber";
+  }
+
+  function resetCheckout() {
+    setShippingDetails({});
+    setBillingDetails({});
+    setShippingAndBillingFilled(false);
   }
 
   const showModal = () => {
@@ -456,29 +467,42 @@ const Checkout = () => {
   const handleOk = () => {
     setIsModalVisible(false);
     setResultVisible(true);
+    resetCheckout();
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
+    resetCheckout();
   };
 
   const handleOkResult = () => {
     setResultVisible(false);
+    resetCheckout();
+    clear();
   };
 
   const handleCancelResult = () => {
     setResultVisible(false);
+    resetCheckout();
+    clear();
   };
 
-  const onFinish = (values) => {
-    toggleShippingFilled(true);
-  };
+  const ShippingAndBillingForm = () => {
+    var shippingDetails = {};
+    var billingDetails = {};
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
+    const onFinish = (values) => {
+      setShippingDetails(shippingDetails);
+      setBillingDetails(billingDetails);
+      setShippingAndBillingFilled(true);
+      console.log(shippingDetails);
+      console.log(billingDetails);
+    };
 
-  const ShippingDetailsForm = () => {
+    const onFinishFailed = (errorInfo) => {
+      console.log("Failed:", errorInfo);
+    };
+
     return (
       <Form
         name="basic"
@@ -486,6 +510,7 @@ const Checkout = () => {
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
+        <Divider orientation="left">Shipping Details</Divider>
         <Form.Item
           label="First Name"
           name="First Name"
@@ -496,7 +521,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="Bob" />
+          <Input
+            placeholder="Bob"
+            onChange={(e) => {
+              shippingDetails.first_name = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Last Name"
@@ -508,7 +538,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="Goldberg" />
+          <Input
+            placeholder="Goldberg"
+            onChange={(e) => {
+              shippingDetails.last_name = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Email"
@@ -520,7 +555,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="cooldude@gmail.com" />
+          <Input
+            placeholder="cooldude@gmail.com"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Address Line 1"
@@ -532,7 +572,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="12345 Happy St." />
+          <Input
+            placeholder="12345 Happy St."
+            onChange={(e) => {
+              shippingDetails.address_line_1 = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Address Line 2"
@@ -543,7 +588,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="Apt 2" />
+          <Input
+            placeholder="Apt 2"
+            onChange={(e) => {
+              shippingDetails.address_line_2 = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="City"
@@ -555,7 +605,12 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="Los Angeles" />
+          <Input
+            placeholder="Los Angeles"
+            onChange={(e) => {
+              shippingDetails.locality = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item
           label="Zip"
@@ -567,7 +622,113 @@ const Checkout = () => {
             },
           ]}
         >
-          <Input placeholder="90101" />
+          <Input
+            placeholder="90101"
+            onChange={(e) => {
+              shippingDetails.postal_code = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="First Name"
+          name="Billing First Name"
+          rules={[
+            {
+              required: true,
+              message: "First Name Required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Bob"
+            onChange={(e) => {
+              billingDetails.first_name = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Last Name"
+          name="Billing Last Name"
+          rules={[
+            {
+              required: true,
+              message: "Last Name Required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Goldberg"
+            onChange={(e) => {
+              billingDetails.last_name = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Address Line 1"
+          name="Billing Address Line 1"
+          rules={[
+            {
+              required: true,
+              message: "Address Required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="12345 Happy St."
+            onChange={(e) => {
+              billingDetails.address_line_1 = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Address Line 2"
+          name="Billing Address Line 2"
+          rules={[
+            {
+              required: false,
+            },
+          ]}
+        >
+          <Input
+            placeholder="Apt 2"
+            onChange={(e) => {
+              billingDetails.address_line_2 = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="City"
+          name="Billing City"
+          rules={[
+            {
+              required: true,
+              message: "City required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="Los Angeles"
+            onChange={(e) => {
+              billingDetails.locality = e.target.value;
+            }}
+          />
+        </Form.Item>
+        <Form.Item
+          label="Zip"
+          name="Billing Zip"
+          rules={[
+            {
+              required: true,
+              message: "Zip required",
+            },
+          ]}
+        >
+          <Input
+            placeholder="90101"
+            onChange={(e) => {
+              billingDetails.postalCode = e.target.value;
+            }}
+          />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
@@ -577,6 +738,7 @@ const Checkout = () => {
       </Form>
     );
   };
+
   const CheckoutForm = () => {
     return (
       <SquarePaymentForm
@@ -632,7 +794,11 @@ const Checkout = () => {
         footer={null}
       >
         <Spin spinning={loading}>
-          {isShippingFilled ? <CheckoutForm /> : <ShippingDetailsForm />}
+          {isShippingAndBillingFilled ? (
+            <CheckoutForm />
+          ) : (
+            <ShippingAndBillingForm />
+          )}
         </Spin>
       </Modal>
       <Modal
