@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row, Typography } from "antd";
+import { Col, Divider, Row, Typography } from "antd";
 import "../css/AboutUs.scss";
 import {
   FaFacebook,
@@ -14,112 +14,13 @@ const { Title, Paragraph } = Typography;
 const AboutUs = () => {
   return (
     <div className="body">
-      <div className="container-fluid aboutus-header shadowed">
-        <Title
-          className="padding-left small-padding-top-bottom"
-          style={{ color: "#ffffff" }}
-        >
-          About Us
-        </Title>
+      <div class="page-header shadowed">
+        <div class="page-header__bg"></div>
+        <h1 class="page-header__title">About Us</h1>
       </div>
       <div className="container">
-        <section id="timeline">
-          <Title>Our Product's Timeline</Title>
-          <div className="timeline-card-wrapper">
-            <div className="timeline-card timeline-card--step1">
-              <div className="head">
-                <div className="number-box">
-                  <span>01</span>
-                </div>
-                <h2>
-                  <span className="small">Subtitle</span> Technology
-                </h2>
-              </div>
-              <div className="body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
-                </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
-              </div>
-            </div>
-            <div className="timeline-card timeline-card--step2">
-              <div className="head">
-                <div className="number-box">
-                  <span>02</span>
-                </div>
-                <h2>
-                  <span className="small">Subtitle</span> Confidence
-                </h2>
-              </div>
-              <div className="body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
-                </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
-              </div>
-            </div>
-            <div className="timeline-card timeline-card--step3">
-              <div className="head">
-                <div className="number-box">
-                  <span>03</span>
-                </div>
-                <h2>
-                  <span className="small">Subtitle</span> Adaptation
-                </h2>
-              </div>
-              <div className="body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
-                </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
-              </div>
-            </div>
-            <div className="timeline-card timeline-card--step4">
-              <div className="head">
-                <div className="number-box">
-                  <span>04</span>
-                </div>
-                <h2>
-                  <span className="small">Subtitle</span> Consistency
-                </h2>
-              </div>
-              <div className="body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
-                </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
-              </div>
-            </div>
-            <div className="timeline-card timeline-card--step5">
-              <div className="head">
-                <div className="number-box">
-                  <span>05</span>
-                </div>
-                <h2>
-                  <span className="small">Subtitle</span> Conversion
-                </h2>
-              </div>
-              <div className="body">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
-                </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
-              </div>
-            </div>
-          </div>
-        </section>
-        <hr className="separator separator--dots" />
-        <Title className="centered">Get to Know Us</Title>
+        <Divider />
+        <Title className="centered">Who are We?</Title>
         <Row align="middle">
           <Col xs={24} sm={24} md={12} lg={12} xl={12} push="2">
             <div className="profile-card-wrapper">

@@ -1,6 +1,6 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import "./css/App.scss";
-import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+import { BrowserRouter, Route, NavLink, Switch, useLocation } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { Row, Col, Form, Input, Button } from "antd";
 import { useList } from "react-use";
@@ -26,6 +26,16 @@ export const CartContext = createContext({
   clear: () => {},
   reset: () => {},
 });
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 const App = () => {
   const [
@@ -64,6 +74,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <div>
         <Navbar />
         <Switch>

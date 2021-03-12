@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Row, Col, Card, Typography, Skeleton } from "antd";
 import "../css/Home.scss";
 import { FaFlask, FaDollarSign, FaRunning, FaStar } from "react-icons/fa";
+import { GiTestTubes } from "react-icons/gi";
 import LazyLoad from "react-lazyload";
 
 const { Title, Paragraph } = Typography;
@@ -142,18 +143,19 @@ const Home = memo(() => {
         <div className="container quote-container square-brackets-quote">
           <blockquote>
             <Title level={1}>
-              This is really the best stuff I've ever tried,
-              <br /> and believe me, I am a certified
-              <br /> FaceBook CBD connoisseur
+              Rigourously tested so that you don't have <br />
+              to worry about spontaneous combustion
             </Title>
-            <Paragraph class="author"> - James Bond</Paragraph>
-            <h4 className="small-padding-top-bottom">
-              <FaStar size={"2em"} />
-              <FaStar size={"2em"} />
-              <FaStar size={"2em"} />
-              <FaStar size={"2em"} />
-              <FaStar size={"2em"} />
+            <h4>
+              <GiTestTubes size={"3em"} />
             </h4>
+            <NavLink
+              className="btn-primary learn-more margin-top-bottom"
+              to="/store"
+              style={{ textDecoration: "none" }}
+            >
+              See Lab Results »
+            </NavLink>
           </blockquote>
         </div>
         <LazyLoad placeholder={<Skeleton />}>
@@ -173,6 +175,38 @@ const Home = memo(() => {
           </div>
         </LazyLoad>
         <div className="container quote-container square-brackets-quote padding-bottom">
+          <Row gutter={60} justify="space-between" align="middle">
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <img src="images/hemp.png" alt="Farmer farming hemp" />
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
+              <div className="quote-wrapper">
+                <blockquote class="text">
+                  <p>
+                    The real question is why wouldn't you have a bottle of Canna
+                    Kool in every room in your house.
+                  </p>
+                  <footer>– Billy Bo Bob James</footer>
+                </blockquote>
+              </div>
+            </Col>
+          </Row>
+          <Row gutter={60} justify="space-between" align="middle">
+            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
+              <div className="quote-wrapper">
+                <blockquote class="text">
+                  <p>
+                    The real question is why wouldn't you have a bottle of Canna
+                    Kool in every room in your house.
+                  </p>
+                  <footer>– Billy Bo Bob James</footer>
+                </blockquote>
+              </div>
+            </Col>
+            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
+              <img src="images/hemp.png" alt="Farmer farming hemp" />
+            </Col>
+          </Row>
           <Row gutter={60} justify="space-between" align="middle">
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
               <img src="images/hemp.png" alt="Farmer farming hemp" />

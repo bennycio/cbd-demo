@@ -31,8 +31,6 @@ import {
 } from "react-square-payment-form";
 
 import { v4 as uuidv4 } from "uuid";
-import { useList } from "react-use";
-import Checkbox from "antd/lib/checkbox/Checkbox";
 
 const { Title } = Typography;
 
@@ -64,21 +62,17 @@ const Store = () => {
 
   return (
     <div className="body">
-      <div className="container-fluid store-header shadowed">
-        <Title
-          className="padding-left small-padding-top-bottom"
-          style={{ color: "#ffffff" }}
-        >
-          Products
-        </Title>
+      <div class="page-header shadowed">
+        <div class="page-header__bg"></div>
+        <h1 class="page-header__title">Our Products</h1>
       </div>
       <div className="container products-container margin-top padding-bottom">
         <Cart />
         <Divider orientation="left" className="divider-lower">
-          Scent Free
+          Roll Ons
         </Divider>
         <Row className="standard">
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
             <Product
               name={ckStandard.name}
               cost={ckStandard.cost}
@@ -86,7 +80,7 @@ const Store = () => {
               size={ckStandard.size}
             />
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
             <Product
               name={ckXL.name}
               cost={ckXL.cost}
@@ -94,12 +88,7 @@ const Store = () => {
               size={ckXL.size}
             />
           </Col>
-        </Row>
-        <Divider orientation="left" className="divider-lower">
-          Mint Scented
-        </Divider>
-        <Row className="mint">
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
             <Product
               name={ckMintStandard.name}
               cost={ckMintStandard.cost}
@@ -107,7 +96,7 @@ const Store = () => {
               size={ckMintStandard.size}
             />
           </Col>
-          <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+          <Col xs={24} sm={12} md={6} lg={6} xl={6}>
             <Product
               name={ckMintXL.name}
               cost={ckMintXL.cost}
@@ -190,12 +179,16 @@ const Product = (props) => {
     document.getElementById(props.name).innerHTML = "Added to Cart";
     setTimeout(() => {
       document.getElementById(props.name).innerHTML = "Add to Cart";
-    }, 3000);
+    }, 1000);
   }
   function changeAdded() {
     var index = cart.findIndex((i) => i.name === props.name);
     if (index === -1) {
       push({ name: props.name, cost: props.cost, count: 1 });
+      changeAddedTxt();
+    } else {
+      const count = cart[index].count + 1;
+      updateAt(index, { name: props.name, cost: props.cost, count: count });
       changeAddedTxt();
     }
   }
