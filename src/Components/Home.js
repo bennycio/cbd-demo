@@ -19,9 +19,11 @@ const Home = memo(() => {
           </NavLink>
         </header>
         <header class="hero-header">
-          <h1 class="hero-title">Find Peace Again With</h1>
-          <h1 class="hero-title">Canna Kool</h1>
+          <h1 class="hero-title">Find Peace Again With <br />Canna Kool</h1>
         </header>
+        {/* <video autoPlay muted loop className="header-video">
+          <source src="videos/headervideo.mp4" type="video/mp4" />
+        </video> */}
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
@@ -150,7 +152,7 @@ const Home = memo(() => {
               <GiTestTubes size={"3em"} />
             </h4>
             <NavLink
-              className="btn-primary learn-more margin-top-bottom"
+              className="btn-primary learn-more margin-bottom"
               to="/store"
               style={{ textDecoration: "none" }}
             >
@@ -177,7 +179,11 @@ const Home = memo(() => {
         <div className="container quote-container square-brackets-quote padding-bottom">
           <Row gutter={60} justify="space-between" align="middle">
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img src="images/hemp.png" alt="Farmer farming hemp" />
+              <img
+                className="quote-img"
+                src="images/workout.png"
+                alt="Farmer farming hemp"
+              />
             </Col>
             <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
               <div className="quote-wrapper">
@@ -204,12 +210,20 @@ const Home = memo(() => {
               </div>
             </Col>
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img src="images/hemp.png" alt="Farmer farming hemp" />
+              <img
+                className="quote-img"
+                src="images/meditation.png"
+                alt="Farmer farming hemp"
+              />
             </Col>
           </Row>
           <Row gutter={60} justify="space-between" align="middle">
             <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img src="images/hemp.png" alt="Farmer farming hemp" />
+              <img
+                className="quote-img"
+                src="images/doctor.png"
+                alt="Farmer farming hemp"
+              />
             </Col>
             <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
               <div className="quote-wrapper">

@@ -1,14 +1,15 @@
 import React from "react";
 import "../css/Info.scss";
-import { Button, Col, Divider, Row, Typography, BackTop } from "antd";
-import {GiMuscleUp, GiNoseSide} from 'react-icons/gi';
-import {RiPlantFill} from 'react-icons/ri';
+import { Col, Divider, Row, Typography, BackTop } from "antd";
+import { GiMuscleUp, GiNoseSide } from "react-icons/gi";
+import { RiPlantFill } from "react-icons/ri";
 
 const { Title } = Typography;
 
 const Info = () => {
   return (
     <div className="body">
+      <BackTop />
       <div class="page-header shadowed">
         <div class="page-header__bg"></div>
         <h1 class="page-header__title">Product Info</h1>
@@ -23,16 +24,16 @@ const Info = () => {
                   <span>01</span>
                 </div>
                 <h2>
-                  <span className="small">Subtitle</span> Technology
+                  <span className="small">Farming</span> Grow The Stuff
                 </h2>
               </div>
               <div className="body">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
+                  The first step in the process of getting the CBD into your
+                  body is to grow the stuff. It has to come from somewhere,
+                  doesn't it?
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="images/cbdfarm.jpg" alt="CBD Farm" />
               </div>
             </div>
             <div className="timeline-card timeline-card--step2">
@@ -41,16 +42,16 @@ const Info = () => {
                   <span>02</span>
                 </div>
                 <h2>
-                  <span className="small">Subtitle</span> Confidence
+                  <span className="small">Refinery</span> Pure Hemp
                 </h2>
               </div>
               <div className="body">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
+                  We use this humungus and terrifying machine to turn the hemp
+                  we farm into something that looks pretty so that you feel
+                  comfortable using our product.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="images/refinery.jpg" alt="Refinery" />
               </div>
             </div>
             <div className="timeline-card timeline-card--step3">
@@ -59,16 +60,16 @@ const Info = () => {
                   <span>03</span>
                 </div>
                 <h2>
-                  <span className="small">Subtitle</span> Adaptation
+                  <span className="small">Extraction</span> Take It Out!
                 </h2>
               </div>
               <div className="body">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
+                  We spend a lot of time getting the CBD out of the refined hemp
+                  because we got sued for leaving 50% of the THC in the final
+                  product.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="images/hemp.jpg" alt="Extraction" />
               </div>
             </div>
             <div className="timeline-card timeline-card--step4">
@@ -77,16 +78,16 @@ const Info = () => {
                   <span>04</span>
                 </div>
                 <h2>
-                  <span className="small">Subtitle</span> Consistency
+                  <span className="small">Testing</span> Consistency
                 </h2>
               </div>
               <div className="body">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
+                  Our product is tested many times and normally it works as
+                  intended but occasionally we will throw out one because it
+                  causes hallucinogenic effects in the monkeys.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="images/labtesting.jpg" alt="Lab Testing" />
               </div>
             </div>
             <div className="timeline-card timeline-card--step5">
@@ -95,29 +96,31 @@ const Info = () => {
                   <span>05</span>
                 </div>
                 <h2>
-                  <span className="small">Subtitle</span> Conversion
+                  <span className="small">Packing</span> Hand it Off
                 </h2>
               </div>
               <div className="body">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Soluta reiciendis deserunt doloribus consequatur, laudantium
-                  odio dolorum laboriosam.
+                  We have people manually package every bottle with love and a
+                  little kiss to make sure that you feel special and so that
+                  these people still have jobs.
                 </p>
-                <img src="http://placehold.it/1000x500" alt="Graphic" />
+                <img src="images/relaxed.jpg" alt="Packaging the Product" />
               </div>
             </div>
           </div>
         </section>
-        <hr className="separator"/>
+        <hr className="separator" />
         <section className="comparison-table">
           <Title>Whats the Difference?</Title>
-          <hr className="separator separator--dots"/>
+          <hr className="separator separator--dots" />
           <Row justify="space-around" align="middle">
             <Col>
               <div className="comparison-column shadowed">
                 <Title>Odorless</Title>
-                <Title><GiNoseSide/></Title>
+                <Title>
+                  <GiNoseSide />
+                </Title>
                 <ul>
                   <li>No Odor</li>
                   <li>2oz or 3oz</li>
@@ -125,13 +128,15 @@ const Info = () => {
                   <li>Lab Tested</li>
                   <li>Starting at $50</li>
                 </ul>
-                <Button type="primary">See more</Button>
+                <button className="btn-primary learn-more">See more</button>
               </div>
             </Col>
             <Col>
               <div className="comparison-column shadowed">
                 <Title>Mint Cool</Title>
-                <Title><RiPlantFill /></Title>
+                <Title>
+                  <RiPlantFill />
+                </Title>
                 <ul>
                   <li>Minty Scent</li>
                   <li>2oz or 3oz</li>
@@ -139,13 +144,15 @@ const Info = () => {
                   <li>Lab Tested</li>
                   <li>Starting at $50</li>
                 </ul>
-                <Button type="primary">See more</Button>
+                <button className="btn-primary learn-more">See more</button>
               </div>
             </Col>
             <Col>
               <div className="comparison-column shadowed">
                 <Title>Extreme</Title>
-                <Title><GiMuscleUp/></Title>
+                <Title>
+                  <GiMuscleUp />
+                </Title>
                 <ul>
                   <li>No Odor</li>
                   <li>2oz or 3oz</li>
@@ -153,14 +160,69 @@ const Info = () => {
                   <li>Lab Tested</li>
                   <li>Starting at $75</li>
                 </ul>
-                <Button type="primary">See more</Button>
+                <button className="btn-primary learn-more">See more</button>
               </div>
             </Col>
           </Row>
         </section>
       </div>
       <Divider />
-      <div className="hotspot-container">
+      <div className="alternating-info">
+        <div className="info-right">
+          <div className="info-text right">
+            <h1 className="title">Homegrown, Homeowned</h1>
+            <p className="info">
+              No corpos running this business. Only the self-made, hardworking,
+              pragmatic cannabis farmers, distributors, scientists, and
+              entreprenuers.
+            </p>
+          </div>
+        </div>
+        <img
+          src="images/homegrown.jpg"
+          className="info-pic left shadowed"
+          alt="Woman In her Shop"
+        />
+      </div>
+      <div className="alternating-info">
+        <div className="info-center">
+          <div className="info-text center">
+            <h1 className="title">Potent Solution</h1>
+            <p className="info">
+              Designed for people who want a powerful solution to body pain at a
+              price that makes it easy to feel good.
+            </p>
+          </div>
+        </div>
+        <img
+          src="images/discovery.png"
+          className="info-pic center-left"
+          alt="Woman In her Shop"
+        />
+        <img
+          src="images/parachute.png"
+          className="info-pic center-right"
+          alt="Woman In her Shop"
+        />
+      </div>
+      <div className="alternating-info">
+        <div className="info-left">
+          <div className="info-text left">
+            <h1 className="title">Safe, Safe, and Safe</h1>
+            <p className="info">
+              The fact of the matter is, we test each an every bottle
+              individually on a monkey before we ship it to you, so that you can
+              feel trust in us that your Canna Kool will do the job.
+            </p>
+          </div>
+        </div>
+        <img
+          src="images/labtesting.jpg"
+          className="info-pic right shadowed"
+          alt="Woman In her Shop"
+        />
+      </div>
+      {/* <div className="hotspot-container">
         <div className="lg-container">
           <img
             className="lg-image"
@@ -208,6 +270,18 @@ const Info = () => {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="final-info centered">
+        <Row justify="space-around">
+          <Col>
+            <img src="images/discovering.png" alt="Discovering new things" />
+            <h1>Sustainably Designed</h1>
+          </Col>
+          <Col>
+            <img src="images/qualityproduct.png" alt="Quality Product" />
+            <h1>Highest Quality, Lowest Price</h1>
+          </Col>
+        </Row>
       </div>
     </div>
   );

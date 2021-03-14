@@ -1,13 +1,12 @@
+$primary-color: #05c7f2;
+$secondary-color: #262a73;
+$tertiary-color: #2e3f8e;
+$accent-color: #1e2159;
 
-$primary-color: #05C7F2;
-$secondary-color: #262A73;
-$tertiary-color: #2E3F8E;
-$accent-color: #1E2159;
-
-$primary-mint-color: #05C7F2;
-$secondary-mint-color: #0FA644;
-$tertiary-mint-color: #3365A6;
-$accent-mint-color: #03A688;
+$primary-mint-color: #05c7f2;
+$secondary-mint-color: #0fa644;
+$tertiary-mint-color: #3365a6;
+$accent-mint-color: #03a688;
 
 $buttonRadius: 24px;
 $labelPaddingX: $buttonRadius * 1;
@@ -18,7 +17,7 @@ $colorButtonHover: $secondary-color;
 $colorText: #333;
 $colorHeadingBackground: #555;
 
-$bg-color-1: #F2F2F2;
+$bg-color-1: #f2f2f2;
 $bg-color-2: rgb(221, 221, 221);
 
 .info-header {
@@ -68,19 +67,14 @@ $marker-size: 9px;
 /* Colors */
 
 $steps: $primary-color;
-$colors: $primary-color,
-$secondary-color,
-$tertiary-color,
-$accent-color;
+$colors: $primary-color, $secondary-color, $tertiary-color, $accent-color;
 $timeline: #bdbdbd;
 
-
 $container-height: $rows * ($card-height + $outer-margin) + $stagger;
-$container-width: $card-width*2 + $outer-margin*3;
+$container-width: $card-width * 2 + $outer-margin * 3;
 $head-height: $number-size + 50;
 $body-height: $card-height - $head-height;
 $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
-
 
 @include mq-lg {
   %arrow {
@@ -102,16 +96,18 @@ $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
   }
 }
 
-
 /* Some Cool Stuff */
 
 $counter: $items - $rows + 2;
 @for $i from 1 through $rows {
-  .timeline-card:nth-child(#{$i*2-1})   { order: $i }
-  .timeline-card:nth-child(#{$i*2})     { order: $counter }
+  .timeline-card:nth-child(#{$i*2-1}) {
+    order: $i;
+  }
+  .timeline-card:nth-child(#{$i*2}) {
+    order: $counter;
+  }
   $counter: $counter + 1;
 }
-
 
 #timeline {
   padding: 100px 0;
@@ -155,7 +151,7 @@ $counter: $items - $rows + 2;
   .timeline-card {
     position: relative;
     display: block;
-    margin: 10px auto 80px;
+    margin: 10px auto 40px;
     max-width: 94%;
     z-index: 2;
     @include mq-sm {
@@ -170,7 +166,7 @@ $counter: $items - $rows + 2;
       height: $card-height;
       margin: $outer-margin;
       margin-top: $outer-margin/2;
-      margin-bottom: $outer-margin/2;
+      margin-bottom: $outer-margin;
       &:nth-child(odd) {
         margin-right: $outer-margin/2;
         .head::after {
@@ -201,6 +197,7 @@ $counter: $items - $rows + 2;
         margin-top: $stagger;
       }
     }
+
     .head {
       position: relative;
       display: flex;
@@ -248,13 +245,15 @@ $counter: $items - $rows + 2;
         height: $body-height;
       }
       p {
+        color: black;
         font-size: 14px;
         line-height: 18px;
         margin-bottom: $inner-margin;
       }
       img {
         display: block;
-        width: 100%;
+        height: 35vh;
+        width: 30vw;
       }
     }
     @for $i from 1 through $items {
@@ -269,11 +268,10 @@ $counter: $items - $rows + 2;
   }
 }
 
-
-.comparison-table{
+.comparison-table {
   text-align: center;
   margin: 20px 0px 20px 0px;
-  .comparison-column{
+  .comparison-column {
     padding: 5vw;
     width: 25vw;
     height: auto;
@@ -296,23 +294,143 @@ $counter: $items - $rows + 2;
   }
 }
 
+.alternating-info {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+
+  .info-right {
+    position: relative;
+    height: 100vh;
+    width: 60vw;
+    float: right;
+    border-top-left-radius: 5%;
+    border-bottom-left-radius: 5%;
+    background: linear-gradient(
+      0.25turn,
+      $primary-color,
+      $tertiary-color,
+      $secondary-color
+    );
+  }
+  .info-left {
+    position: relative;
+    height: 100vh;
+    width: 60vw;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    background: linear-gradient(
+      0.75turn,
+      $primary-color,
+      $tertiary-color,
+      $secondary-color
+    );
+  }
+
+  .info-center {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .info-pic {
+    position: absolute;
+    border-radius: 10%;
+    z-index: 5;
+
+    &.left {
+      top: 15%;
+      height: 70vh;
+      width: 50vw;
+      left: 5%;
+    }
+    &.right {
+      top: 15%;
+      height: 70vh;
+      width: 50vw;
+      right: 5%;
+    }
+
+    &.center-left {
+      top: 20%;
+      height: 60vh;
+      width: 30vw;
+      left: 2%;
+    }
+
+    &.center-right {
+      top: 20%;
+      height: 60vh;
+      width: 35vw;
+      right: 2%;
+    }
+  }
+
+  .info-text {
+    width: 25vw;
+    position: absolute;
+    top: 20%;
+    z-index: 10;
+    .title {
+      font-size: 4em;
+    }
+    .info {
+      font-size: 1.2em;
+    }
+
+    &.center {
+      left: 35%;
+      text-align: center;
+      .title {
+        color: black;
+      }
+      .info {
+        color: black;
+      }
+    }
+
+    &.right {
+      left: 35%;
+    }
+    &.left {
+      right: 35%;
+    }
+    &.right,
+    &.left {
+      .title {
+        color: white;
+      }
+      .info {
+        color: white;
+      }
+    }
+  }
+}
+
+$dash-size: 5px;
 
 .hotspot-container {
-  width: 100%;
+  margin-top: 8%;
+  position: relative;
+  width: 100vw;
+  height: 90vh;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
   align-items: center;
+  text-align: center;
+  color: black;
 }
 
 .lg-container {
+  width: 50%;
   position: relative;
 }
 
 .lg-image {
   display: block;
-  height: 100vh;
-  width: 100vw
+  height: 100%;
+  width: 100%;
+  border-radius: 10%;
 }
 
 .lg-hotspot {
@@ -427,5 +545,16 @@ $counter: $items - $rows + 2;
   100% {
     transform: scale(1, 1);
     opacity: 1;
+  }
+}
+
+.final-info {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 20vh;
+  img {
+    height: 60vh;
+    width: auto;
+    margin: auto;
   }
 }
