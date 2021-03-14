@@ -176,68 +176,73 @@ const Home = memo(() => {
             </div>
           </div>
         </LazyLoad>
-        <div className="container quote-container square-brackets-quote padding-bottom">
-          <Row gutter={60} justify="space-between" align="middle">
-            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img
-                className="quote-img"
-                src="images/workout.png"
-                alt="Farmer farming hemp"
-              />
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
-              <div className="quote-wrapper">
-                <blockquote class="text">
-                  <p>
-                    The real question is why wouldn't you have a bottle of Canna
-                    Kool in every room in your house.
-                  </p>
-                  <footer>– Billy Bo Bob James</footer>
-                </blockquote>
-              </div>
-            </Col>
-          </Row>
-          <Row gutter={60} justify="space-between" align="middle">
-            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
-              <div className="quote-wrapper">
-                <blockquote class="text">
-                  <p>
-                    The real question is why wouldn't you have a bottle of Canna
-                    Kool in every room in your house.
-                  </p>
-                  <footer>– Billy Bo Bob James</footer>
-                </blockquote>
-              </div>
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img
-                className="quote-img"
-                src="images/meditation.png"
-                alt="Farmer farming hemp"
-              />
-            </Col>
-          </Row>
-          <Row gutter={60} justify="space-between" align="middle">
-            <Col xs={24} sm={24} md={24} lg={12} xl={12}>
-              <img
-                className="quote-img"
-                src="images/doctor.png"
-                alt="Farmer farming hemp"
-              />
-            </Col>
-            <Col xs={24} sm={24} md={24} lg={12} xl={12} push="2">
-              <div className="quote-wrapper">
-                <blockquote class="text">
-                  <p>
-                    The real question is why wouldn't you have a bottle of Canna
-                    Kool in every room in your house.
-                  </p>
-                  <footer>– Billy Bo Bob James</footer>
-                </blockquote>
-              </div>
-            </Col>
-          </Row>
+        <div className="alternating-info">
+        <div className="info-right">
+          <div className="info-text right">
+            <h1 className="title">Homegrown, Homeowned</h1>
+            <p className="info">
+              No corpos running this business. Only the self-made, hardworking,
+              pragmatic cannabis farmers, distributors, scientists, and
+              entreprenuers.
+            </p>
+          </div>
         </div>
+        <img
+          src="images/homegrown.jpg"
+          className="info-pic left shadowed"
+          alt="Woman In her Shop"
+        />
+      </div>
+      <div className="alternating-info">
+        <div className="info-center">
+          <div className="info-text center">
+            <h1 className="title">Potent Solution</h1>
+            <p className="info">
+              Designed for people who want a powerful solution to body pain at a
+              price that makes it easy to feel good.
+            </p>
+          </div>
+        </div>
+        <img
+          src="images/discovery.png"
+          className="info-pic center-left"
+          alt="Woman In her Shop"
+        />
+        <img
+          src="images/parachute.png"
+          className="info-pic center-right"
+          alt="Woman In her Shop"
+        />
+      </div>
+      <div className="alternating-info">
+        <div className="info-left">
+          <div className="info-text left">
+            <h1 className="title">Safe, Safe, and Safe</h1>
+            <p className="info">
+              The fact of the matter is, we test each an every bottle
+              individually on a monkey before we ship it to you, so that you can
+              feel trust in us that your Canna Kool will do the job.
+            </p>
+          </div>
+        </div>
+        <img
+          src="images/labtesting.jpg"
+          className="info-pic right shadowed"
+          alt="Woman In her Shop"
+        />
+      </div>
+      <div className="final-info centered">
+        <Row justify="space-around">
+          <Col>
+            <img src="images/discovering.png" alt="Discovering new things" />
+            <h1>Sustainably Designed</h1>
+          </Col>
+          <Col>
+            <img src="images/qualityproduct.png" alt="Quality Product" />
+            <h1>Highest Quality, Lowest Price</h1>
+          </Col>
+        </Row>
+      </div>
         <div className="container-fluid home-card-container">
           <div className="small-margin">
             <Row gutter={[24, 24]}>
