@@ -16,6 +16,10 @@ $bg-color-2: rgb(221, 221, 221);
   margin-right: 6%;
 }
 
+* {
+  font-family: 'Allerta Stencil';
+}
+
 html {
   height: 100vh;
   width: 100vw;
@@ -25,8 +29,8 @@ html {
   box-sizing: border-box;
   letter-spacing: 1.1px;
   overflow-x: hidden;
-  font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
+
 
 .body {
   color: $bg-color-2;
