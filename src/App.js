@@ -5,11 +5,11 @@ import { IconContext } from "react-icons";
 import { Row, Col, Form, Input, Button } from "antd";
 import { useList } from "react-use";
 import "antd/dist/antd.css";
-import Home from "./Components/Home";
-import Store from "./Components/Store";
-import AboutUs from "./Components/AboutUs";
-import Info from "./Components/Info";
-import Contact from "./Components/Contact"
+import Home from "./views/Home";
+import Store from "./views/Store";
+import AboutUs from "./views/AboutUs";
+import Info from "./views/Info";
+import Contact from "./views/Contact"
 
 export const CartContext = createContext({
   cart: [],
